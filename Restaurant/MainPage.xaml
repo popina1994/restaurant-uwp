@@ -9,45 +9,58 @@
 
 
     <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
-               CompactPaneLength="50" OpenPaneLength="150" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"  >
+               CompactPaneLength="50" OpenPaneLength="200" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"  >
         <SplitView.Pane>
-            <StackPanel Background="Gray">
+            <Grid x:Name="SplitViewPane"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Background="Gray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="50" Background="Transparent" Click="HamburgerButton_Click" HorizontalAlignment="Stretch" Margin="0,0,100.4,0"/>
-                <RelativePanel>
-                    <Button x:Name="MenuButtonAccount" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;"
-                    Width="50" Height="40" Background="Transparent" VerticalAlignment="Center"/>
-                    <TextBlock x:Name ="textBoxUserName" Text="Петар Петровић" FontSize="10" VerticalAlignment="Center" SelectionChanged="TextBlock_SelectionChanged" 
+                
+                <ListView Background="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}" Grid.Row="1">
+                    <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="50"
+                             Background="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}" Click="HamburgerButton_Click" Margin="-5,0,0,0"
+                            FontSize="18" />
+                    <RelativePanel>
+                        <TextBlock x:Name="MenuButtonAccount" FontFamily="Segoe MDL2 Assets" Text="&#xE77B;"
+                          Margin="5" VerticalAlignment="Bottom"  FontSize="18" />
+                        <TextBlock x:Name ="textBoxUserName" Text="    Петар Петровић" FontSize="10" VerticalAlignment="Center" SelectionChanged="TextBlock_SelectionChanged" 
                                RelativePanel.RightOf="MenuButtonAccount" FontFamily="Segoe UI"/>
 
-                    <TextBlock Text="Поручилац" FontSize="15" VerticalAlignment="Center" 
+                        <TextBlock Text="   Поручилац" FontSize="15" VerticalAlignment="Center" 
                                SelectionChanged="TextBlock_SelectionChanged" RelativePanel.RightOf="MenuButtonAccount"
                                RelativePanel.Below="textBoxUserName" FontFamily="Segoe UI"/>
-                </RelativePanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButtonCart" FontFamily="Segoe MDL2 Assets" Content="&#xE7BF;"
-                        Width="50" Height="50" Background="Transparent"/>
-                    <TextBlock Text="Корпа" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButtonSettings" FontFamily="Segoe MDL2 Assets" Content="&#xE713;" 
-                        Width="50" Height="50" Background="Transparent"/>
-                    <TextBlock Text="Подешавања" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-            </StackPanel>
+                    </RelativePanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="MenuButtonCart" FontFamily="Segoe MDL2 Assets" Text="&#xE7BF;"
+                         Margin="5" FontSize="18"/>
+                        <TextBlock Text="  Корпа" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </ListView>
+                <ListView Background="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}" Grid.Row="2" IsItemClickEnabled="True" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="MenuButtonSettings2" FontFamily="Segoe MDL2 Assets" Text="&#xE713;" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="18" Margin="5"/>
+                        <TextBlock Text="  Подешавања" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </ListView>
+            </Grid>
         </SplitView.Pane>
         <SplitView.Content>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="73*"/>
-                    <RowDefinition Height="927*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="SplitView Basic" FontSize="25" Foreground="White"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="644,409.583,642,483" Grid.Row="1"/>
-                <TextBox Text="TextBox" Margin="0,0,-1,0" Grid.RowSpan="2"/>
-            </Grid>
+            <Frame x:Name="contentFrame">
+            <TextBlock Text="SplitView Basic" FontSize="25" Foreground="White"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" />
+            </Frame>
         </SplitView.Content>
+            
     </SplitView>
+    
 
     
 </Page>
