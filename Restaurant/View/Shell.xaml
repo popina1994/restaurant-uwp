@@ -24,12 +24,12 @@
                 <ListView x:Name="ListViewMenu" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" Grid.Row="1" SelectionChanged="ListViewMenu_SelectionChanged">
                     <TextBlock x:Name="SideDrawerItemHamburger" FontFamily="Segoe MDL2 Assets" Text="&#xE700;" 
                             Margin="5,0,0,0" FontSize="18" VerticalAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" x:Name="SideDrawerItemHome">
                         <TextBlock x:Name="TextBlockHome" FontFamily="Segoe MDL2 Assets" Text="&#xE80F;"
                          Margin="5" FontSize="18"/>
                         <TextBlock Text="  Почетна" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" x:Name="SideDrawerItemCart">
                         <TextBlock x:Name="TextBlockBasket" FontFamily="Segoe MDL2 Assets" Text="&#xE7BF;"
                          Margin="5" FontSize="18"/>
                         <TextBlock Text="  Корпа" FontSize="18" VerticalAlignment="Center" />
@@ -46,7 +46,7 @@
                                 RelativePanel.RightOf="TextBlockAccount"
                                RelativePanel.Below="TextBlockUserName" FontFamily="Segoe UI"/>
                     </RelativePanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" x:Name="SideDrawerItemSettings">
                         <TextBlock x:Name="TextBlockSettings" FontFamily="Segoe MDL2 Assets" Text="&#xE713;"  
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    FontSize="18" Margin="5"/>

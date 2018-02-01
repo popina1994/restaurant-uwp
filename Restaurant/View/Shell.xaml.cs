@@ -30,7 +30,10 @@ namespace Restaurant
 
         Dictionary <string, SideDrawerItem> sideDrawerItems = new Dictionary<string, SideDrawerItem>()
         {
-            {"SideDrawerItemAccount", new SideDrawerItem(){ Name="SideDrawerItemAccount", NavigationDestination=typeof(RegisterPage)} }
+            {"SideDrawerItemAccount", new SideDrawerItem(){ Name="SideDrawerItemAccount", NavigationDestination = typeof(AccountInfoPage)} },
+            {"SideDrawerItemSettings", new SideDrawerItem(){ Name = "SideDrawerItemSettings", NavigationDestination = typeof(SettingsPage) } },
+            {"SideDrawerItemHome", new SideDrawerItem(){ Name = "SideDrawerItemHome", NavigationDestination = typeof(HomePage)} },
+            {"SideDrawerItemCart", new SideDrawerItem(){ Name = "SideDrawerItemCart", NavigationDestination = typeof(CartPage)} },
         };
 
         public Shell()
@@ -38,7 +41,7 @@ namespace Restaurant
             this.InitializeComponent();
 
             Navigation.Frame = SplitViewGlobalFrame;
-            Navigation.Navigate(typeof(MainPage));
+            Navigation.Navigate(typeof(HomePage));
         }
 
         private void HamburgerButtonSelected()

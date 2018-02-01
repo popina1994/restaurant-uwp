@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Restaurant.MainPage"
+    x:Class="Restaurant.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Restaurant"
@@ -7,12 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-
-    <TextBlock Text="Добродошли"
-                   Margin="24"
-                   FontSize="48"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left" />
-
-
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="SETTINGS"/>
+    </Grid>
 </Page>
