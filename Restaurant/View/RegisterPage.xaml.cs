@@ -26,5 +26,10 @@ namespace Restaurant
         {
             this.InitializeComponent();
         }
+
+        private void Register_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

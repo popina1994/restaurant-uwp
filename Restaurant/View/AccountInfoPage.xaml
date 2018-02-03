@@ -8,6 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="INFO"/>
+
+        <CommandBar IsOpen="True"  ClosedDisplayMode="Minimal">
+            <AppBarButton Icon="Accept" />
+        </CommandBar>
+
     </Grid>
+    
+    
 </Page>

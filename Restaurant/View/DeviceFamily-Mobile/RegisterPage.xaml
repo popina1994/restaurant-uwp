@@ -1,45 +1,46 @@
 ﻿<Page
+    x:Class="Restaurant.RegisterPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Restaurant"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="Restaurant.RegisterPage"
     mc:Ignorable="d">
 
-        <Grid x:Name="LayoutRoot" >
+
+    <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0" Margin="10,17,10, 30">
             <TextBlock Text="Login Page"  FontSize="40"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Корисничко име" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="username" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxUserName" PlaceholderText="Корисничко име"
                           TextAlignment="Center"/>
             </Grid>
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" Text="Шифра" FontSize="30" HorizontalAlignment="Center"/>
-                
+                <TextBlock  Grid.Column="0" Text="Шифра" FontSize="25" HorizontalAlignment="Center"/>
+
                 <PasswordBox Grid.Column="1" BorderBrush="LightGray" Name="PasswordBoxPassword"  PlaceholderText="Шифра"
                              PasswordRevealMode="Peek" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </Grid>
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" Text="Поновљена шифра"  FontSize="30" HorizontalAlignment="Center"/>
+                <TextBlock  Grid.Column="0" Text="Понови шифру"  FontSize="25" HorizontalAlignment="Center"/>
 
                 <PasswordBox Grid.Column="1" BorderBrush="LightGray" Name="PasswordBoxRepeatedPassword"  PlaceholderText="Поновљена шифра"
                              PasswordRevealMode="Peek" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
@@ -47,65 +48,61 @@
 
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxFirstName" PlaceholderText="Име"
                           TextAlignment="Center"/>
             </Grid>
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxLastName" PlaceholderText="Презиме"
                           TextAlignment="Center"/>
             </Grid>
 
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Телефон" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Телефон" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxPhone" PlaceholderText="Телефон"
                           TextAlignment="Center"/>
             </Grid>
 
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Адреса" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Адреса" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxAddress" PlaceholderText="Адреса"
                           TextAlignment="Center"/>
             </Grid>
 
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="0"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Email" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Email" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxEmail" PlaceholderText="email"
                           TextAlignment="Center"/>
             </Grid>
 
-            <TextBlock  Text="Грешка" Margin="0, 10, 0, 0" FontSize="30" Foreground="Red"  HorizontalAlignment="Center"
+            <TextBlock  Text="Грешка" Margin="0, 10, 0, 0" FontSize="25" Foreground="Red"  HorizontalAlignment="Center"
                         Visibility="Collapsed" Name="TextBlockError"/>
 
-            
-            <Button Content="Региструј се" FontSize="30" Name="Register" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"
+
+            <Button Content="Региструј се" FontSize="25" Name="Register" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"
                     Click="Register_OnClick"/>
 
 
         </StackPanel>
-
-    </Grid>
-
-
-
+        </Grid>
 </Page>
