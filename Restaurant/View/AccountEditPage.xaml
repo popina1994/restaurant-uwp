@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="Restaurant.View.AccountEditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Restaurant.View"
+    xmlns:view_model ="using:Restaurant.ViewModel"
+    xmlns:logic="using:Restaurant.Logic"
+    xmlns:user ="Restaurant.Model.Tables"
+    xmlns:shell ="using:Restaurant.Services"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,17,10, 30">
+           
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxFirstName" PlaceholderText="Име"
+                          TextAlignment="Center" Text="{x:Bind ViewModel.User.FirstName}"/>
+            </Grid>
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxLastName" PlaceholderText="Презиме"
+                          TextAlignment="Center" Text="{x:Bind ViewModel.User.LastName}"/>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Телефон" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxPhone" PlaceholderText="Телефон"
+                          TextAlignment="Center" Text="{x:Bind ViewModel.User.Phone}"/>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Адреса" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxAddress" PlaceholderText="Адреса"
+                          TextAlignment="Center" Text="{x:Bind ViewModel.User.Address}"/>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Email" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxEmail" PlaceholderText="email"
+                          TextAlignment="Center" Text="{x:Bind ViewModel.User.Email}"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Сачувај" FontSize="30" Name="Save" HorizontalAlignment="Stretch" Margin="0, 40, 10, 0"
+                    Click="Save_OnClick"  />
+
+            <Button Grid.Column="1" Content="Откажи" FontSize="30" Name="Cancel" HorizontalAlignment="Stretch" Margin="0, 40, 10, 0"
+                    Click="Cancel_OnClick" />
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+
+
+</Page>

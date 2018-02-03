@@ -12,28 +12,25 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Restaurant.Services;
+using Restaurant.ViewModel;
 using Restaurant.Model;
 using Restaurant.Model.Tables;
-using Restaurant.Services;
-using Restaurant.View;
-using Restaurant.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Restaurant
+namespace Restaurant.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AccountInfoPage : Page
+    public sealed partial class AccountEditPasswordPage : Page
     {
         private AccountInfoViewModel viewModel;
 
-        public AccountInfoPage()
+        public AccountEditPasswordPage()
         {
-            
             this.InitializeComponent();
-
             string username = Navigation.Shell.Model.UserName;
             var userPair = DatabaseModel.UserTable.FirstOrDefault(x => x.Value.UserName == username);
             User user = null;
@@ -43,7 +40,6 @@ namespace Restaurant
             }
             AccountInfoViewModel viewModel = new AccountInfoViewModel(user);
             this.ViewModel = viewModel;
-
         }
 
         public AccountInfoViewModel ViewModel
@@ -52,20 +48,34 @@ namespace Restaurant
             set => viewModel = value;
         }
 
-        private void Edit_OnClick(object sender, RoutedEventArgs e)
+
+        private void Save_OnClick(object sender, RoutedEventArgs e)
         {
-            Navigation.Navigate(typeof(AccountEditPage));
+            if (PasswordBoxOldPassword.Password != ViewModel.User.Password)
+            {
+                TextBlockError.Visibility = Visibility.Visible;
+                TextBlockError.Text = "Стара шифра нетачна";
+                return;
+            }
+
+            if (PasswordBoxRepeatedPassword.Password != PasswordBoxPassword.Password)
+            {
+                TextBlockError.Visibility = Visibility.Visible;
+                TextBlockError.Text = "Шифре се не поклапају";
+                return;
+            }
+
+            string username = Navigation.Shell.Model.UserName;
+            User user = DatabaseModel.UserTable.FirstOrDefault(x => x.Value.UserName == username).Value;
+
+            user.Password = PasswordBoxPassword.Password;
+
+            Navigation.Navigate(typeof(AccountInfoPage));
         }
 
-        private void EditPassword_OnClick(object sender, RoutedEventArgs e)
+        private void Cancel_OnClick(object sender, RoutedEventArgs e)
         {
-            Navigation.Navigate(typeof(AccountEditPasswordPage));
-        }
-
-        private void LogOut_OnClick(object sender, RoutedEventArgs e)
-        {
-            Navigation.Shell.Model.Unregister();
-            Navigation.Navigate(typeof(HomePage));
+            Navigation.Navigate(typeof(AccountInfoPage));
         }
     }
 }

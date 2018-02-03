@@ -14,8 +14,10 @@ namespace Restaurant
 
         private bool isRegistered = false;
 
-        private string fullName = "     Нерегистровани";
+        private static string UNREGISTERED = "     Нерегистровани";
+        private string fullName = UNREGISTERED;
         private int type = User.TYPE_ORDERER;
+        private string userName;
 
         public string FullName
         {
@@ -38,11 +40,26 @@ namespace Restaurant
                 }
         }
 
+        public string UserName
+        {
+            get => userName;
+            set => userName = value;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Unregister()
+        {
+            this.FullName = UNREGISTERED;
+            this.Type = User.TYPE_ORDERER;
+            this.UserName = null;
+            this.IsRegistered = false;
+
         }
     }
 }

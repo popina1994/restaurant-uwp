@@ -97,12 +97,21 @@
     </Compile>
     <Compile Include="Logic\NegationBooleanVisibilityConverter.cs" />
     <Compile Include="Logic\Params\AbstractParams.cs" />
+    <Compile Include="Logic\Params\AccountInfoParams.cs" />
     <Compile Include="Logic\Params\ShellParams.cs" />
     <Compile Include="Logic\TypeStringConverter.cs" />
+    <Compile Include="Logic\UserVisibilityConverter.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
     <Compile Include="Model\ShellModel.cs" />
     <Compile Include="Model\Tables\User.cs" />
+    <Compile Include="ViewModel\AccountInfoViewModel.cs" />
     <Compile Include="ViewModel\SideDrawerItem.cs" />
+    <Compile Include="View\AccountEditPage.xaml.cs">
+      <DependentUpon>AccountEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountEditPasswordPage.xaml.cs">
+      <DependentUpon>AccountEditPasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AccountInfoPage.xaml.cs">
       <DependentUpon>AccountInfoPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +157,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AccountEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountEditPasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AccountInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

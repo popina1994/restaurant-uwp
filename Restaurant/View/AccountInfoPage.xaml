@@ -3,17 +3,126 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Restaurant"
+    xmlns:view_model ="using:Restaurant.ViewModel"
+    xmlns:logic="using:Restaurant.Logic"
+    xmlns:user ="Restaurant.Model.Tables"
+    xmlns:shell ="using:Restaurant.Services"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+    </Page.Resources>
 
-        <CommandBar IsOpen="True"  ClosedDisplayMode="Minimal">
-            <AppBarButton Icon="Accept" />
-        </CommandBar>
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,17,10, 30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Корисничко име" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                <TextBlock    Name="TextBlockUserName"  Text="{x:Bind ViewModel.User.UserName}"
+                          TextAlignment="Center" FontSize="30" HorizontalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                <TextBlock   Name="TextBlockFirstName"  Text="{x:Bind ViewModel.User.FirstName}"
+                          TextAlignment="Center" FontSize="30"/>
+                </Border>
+            </Grid>
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                <TextBlock   Name="TextBlockLastName" Text="{x:Bind ViewModel.User.LastName}"
+                           FontSize="30" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Телефон" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                    <TextBlock    Name="TextBlockPhone"  FontSize="30" Text="{x:Bind ViewModel.User.Phone}"
+                          TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Адреса" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                    <TextBlock  Name="TextBlockAddress" FontSize="30" Text="{x:Bind ViewModel.User.Address}"
+                          TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Email" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                    <TextBlock  Name="TextBlockEmail"  FontSize="30" Text="{x:Bind ViewModel.User.Email}"
+                          TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Тип корисника" FontSize="30" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                    <TextBlock  Name="TextBlockType"  FontSize="30" Text="{x:Bind ViewModel.User.Type, Converter={StaticResource TypeStringConverter}}"
+                                TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+
+
+            <Button Content="Уреди" FontSize="30" Name="Edit" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"
+                    Click="Edit_OnClick" Visibility="{x:Bind ViewModel.User, Converter={StaticResource UserVisibilityConverter}}"/>
+            <Button Content="Уреди шифру" FontSize="30" Name="EditPassword" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"
+                    Click="EditPassword_OnClick" Visibility="{x:Bind ViewModel.User, Converter={StaticResource UserVisibilityConverter}}"/>
+            <Button Content="Одјави се" FontSize="30" Name="LogOut" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"
+                    Click="LogOut_OnClick" Visibility="{x:Bind ViewModel.User, Converter={StaticResource UserVisibilityConverter}}"/>
+
+
+        </StackPanel>
 
     </Grid>
-    
-    
+
+
+
+
 </Page>

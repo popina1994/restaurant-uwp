@@ -7,7 +7,7 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace Restaurant.Model.Tables
 {
-    class User
+    public class User
     {
         private static int ID_USER_GENERATED = 0;
         public const int TYPE_ORDERER = 0;
@@ -89,6 +89,10 @@ namespace Restaurant.Model.Tables
             this.address = address;
             this.email = email;
             this.type = type;
+        }
+
+        public User()
+        {
         }
     }
 }

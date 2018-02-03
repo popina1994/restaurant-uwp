@@ -13,25 +13,23 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Restaurant.Model;
-using Restaurant.Model.Tables;
-using Restaurant.Services;
-using Restaurant.View;
 using Restaurant.ViewModel;
+using Restaurant.Services;
+using Restaurant.Model.Tables;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Restaurant
+namespace Restaurant.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AccountInfoPage : Page
+    public sealed partial class AccountEditPage : Page
     {
         private AccountInfoViewModel viewModel;
 
-        public AccountInfoPage()
+        public AccountEditPage()
         {
-            
             this.InitializeComponent();
 
             string username = Navigation.Shell.Model.UserName;
@@ -43,7 +41,6 @@ namespace Restaurant
             }
             AccountInfoViewModel viewModel = new AccountInfoViewModel(user);
             this.ViewModel = viewModel;
-
         }
 
         public AccountInfoViewModel ViewModel
@@ -52,20 +49,23 @@ namespace Restaurant
             set => viewModel = value;
         }
 
-        private void Edit_OnClick(object sender, RoutedEventArgs e)
+        private void Save_OnClick(object sender, RoutedEventArgs e)
         {
-            Navigation.Navigate(typeof(AccountEditPage));
+            string username = Navigation.Shell.Model.UserName;
+            User user = DatabaseModel.UserTable.FirstOrDefault(x => x.Value.UserName == username).Value;
+            user.FirstName = TextBoxFirstName.Text;
+            user.LastName = TextBoxLastName.Text;
+            user.Address = TextBoxAddress.Text;
+            user.Phone = TextBoxPhone.Text;
+            user.Email = TextBoxEmail.Text;
+
+
+            Navigation.Navigate(typeof(AccountInfoPage));
         }
 
-        private void EditPassword_OnClick(object sender, RoutedEventArgs e)
+        private void Cancel_OnClick(object sender, RoutedEventArgs e)
         {
-            Navigation.Navigate(typeof(AccountEditPasswordPage));
-        }
-
-        private void LogOut_OnClick(object sender, RoutedEventArgs e)
-        {
-            Navigation.Shell.Model.Unregister();
-            Navigation.Navigate(typeof(HomePage));
+            Navigation.Navigate(typeof(AccountInfoPage));
         }
     }
 }
