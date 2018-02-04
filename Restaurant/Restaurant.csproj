@@ -102,7 +102,10 @@
     <Compile Include="Logic\TypeStringConverter.cs" />
     <Compile Include="Logic\UserVisibilityConverter.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
-    <Compile Include="Model\ShellModel.cs" />
+    <Compile Include="Model\Tables\Meal.cs" />
+    <Compile Include="Model\Tables\RestaurantSpec.cs" />
+    <Compile Include="ViewModel\RestaurantViewModel.cs" />
+    <Compile Include="ViewModel\ShellModel.cs" />
     <Compile Include="Model\Tables\User.cs" />
     <Compile Include="ViewModel\AccountInfoViewModel.cs" />
     <Compile Include="ViewModel\SideDrawerItem.cs" />
@@ -143,6 +146,13 @@
     <None Include="Restaurant_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Icons\Button\Order.png" />
+    <Content Include="Assets\Images\Meals\Bean.jpg" />
+    <Content Include="Assets\Images\Meals\Meat.jpg" />
+    <Content Include="Assets\Images\Restaurant\1.jpg" />
+    <Content Include="Assets\Images\Restaurant\2.jpg" />
+    <Content Include="Assets\Images\Restaurant\3.jpg" />
+    <Content Include="Assets\Images\Restaurant\4.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -215,6 +225,7 @@
       <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.16299.0%29</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
