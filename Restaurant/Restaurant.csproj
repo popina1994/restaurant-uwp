@@ -98,12 +98,15 @@
     <Compile Include="Logic\NegationBooleanVisibilityConverter.cs" />
     <Compile Include="Logic\Params\AbstractParams.cs" />
     <Compile Include="Logic\Params\AccountInfoParams.cs" />
+    <Compile Include="Logic\Params\RestaurantInfoParams.cs" />
     <Compile Include="Logic\Params\ShellParams.cs" />
     <Compile Include="Logic\TypeStringConverter.cs" />
     <Compile Include="Logic\UserVisibilityConverter.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
+    <Compile Include="Model\Tables\CommentRestaurant.cs" />
     <Compile Include="Model\Tables\Meal.cs" />
     <Compile Include="Model\Tables\RestaurantSpec.cs" />
+    <Compile Include="ViewModel\RestaurantInfoViewModel.cs" />
     <Compile Include="ViewModel\RestaurantViewModel.cs" />
     <Compile Include="ViewModel\ShellModel.cs" />
     <Compile Include="Model\Tables\User.cs" />
@@ -132,6 +135,9 @@
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\Navigation.cs" />
+    <Compile Include="View\RestaurantInfoPage.xaml.cs">
+      <DependentUpon>RestaurantInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -212,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RestaurantInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

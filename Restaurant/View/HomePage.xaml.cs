@@ -13,9 +13,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Restaurant.Logic.Params;
 using Restaurant.Model;
 using Restaurant.Model.Tables;
 using Restaurant.ViewModel;
+using Restaurant.Services;
+using Restaurant.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -64,6 +67,8 @@ namespace Restaurant
             {
                 
                 RestaurantSpec selectedElement = e.AddedItems[0] as RestaurantSpec;
+                RestaurantInfoParams restaurantInfoParams = new RestaurantInfoParams(selectedElement);
+                Navigation.Navigate(typeof(RestaurantInfoPage),restaurantInfoParams) ;
             }
         }
 
@@ -76,17 +81,24 @@ namespace Restaurant
             TimeSpan time = TimePickerMonStart.Time;
             bool checkTue = (bool) CheckBoxTue.IsChecked;
 
-            bool checkCash = (bool)CheckboxCash.IsChecked;
-            bool checkVisa = (bool)CheckboxVisa.IsChecked;
-            bool checkPayPal = (bool)CheckboxPayPal.IsChecked;
-            bool checkMasterCard = (bool)CheckboxMaster.IsChecked;
+            bool countCash = CheckboxCash.IsChecked != null;
+            bool countVisa = CheckboxVisa.IsChecked != null;
+            bool countPayPal = CheckboxPayPal.IsChecked != null;
+            bool countMasterCard = CheckboxMaster.IsChecked != null;
+
+            
+
+            bool checkCash = countCash ? (bool)CheckboxCash.IsChecked : false;
+            bool checkVisa = countVisa ? (bool)CheckboxVisa.IsChecked : false;
+            bool checkPayPal = countPayPal ? (bool)CheckboxPayPal.IsChecked : false;
+            bool checkMasterCard = countMasterCard ? (bool)CheckboxMaster.IsChecked : false;
 
 
             var matches = DatabaseModel.RestaurantTable.Where(pair => pair.Value.Name.Contains(name)
             && pair.Value.Address.Contains(TextBoxAddress.Text) && pair.Value.Kitchen.Contains(TextBoxKitchen.Text)
             && (pair.Value.Rating <= ratingMax) && (pair.Value.Rating >= ratingMin)                  
-            && (checkCash == pair.Value.CanCash) && (checkMasterCard == pair.Value.CanMasterCard)
-            && (checkPayPal == pair.Value.CanPayPal) && (checkVisa == pair.Value.CanVisa))
+            && (!countCash || (checkCash == pair.Value.CanCash)) && (!countMasterCard || (checkMasterCard == pair.Value.CanMasterCard))
+            && (!countPayPal || (checkPayPal == pair.Value.CanPayPal)) && (!countVisa || (checkVisa == pair.Value.CanVisa)))
                 .Select(pair => pair.Value);
 
             this.ViewModel.Restaurants.Clear();

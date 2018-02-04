@@ -17,6 +17,9 @@ namespace Restaurant.Model.Tables
         private string description;
         private LinkedList<string> imagePathLinkedList;
 
+        private RestaurantSpec restaurant;
+
+
         public int Id
         {
             get => id;
@@ -60,7 +63,7 @@ namespace Restaurant.Model.Tables
             set => imagePathLinkedList = value;
         }
 
-        public Meal(string name, int price, string category, string ingridients, string description, LinkedList<string> imagePathLinkedList)
+        public Meal(string name, int price, string category, string ingridients, string description, LinkedList<string> imagePathLinkedList, RestaurantSpec restaurant)
         {
             this.id = ID_MEALS_GENERATED++;
             this.name = name;
@@ -69,6 +72,13 @@ namespace Restaurant.Model.Tables
             this.ingridients = ingridients;
             this.description = description;
             this.imagePathLinkedList = imagePathLinkedList;
+            this.restaurant = Restaurant;
+        }
+
+        public RestaurantSpec Restaurant
+        {
+            get => restaurant;
+            set => restaurant = value;
         }
     }
 }

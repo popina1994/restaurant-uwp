@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 
 namespace Restaurant.Model.Tables
 {
@@ -13,7 +14,7 @@ namespace Restaurant.Model.Tables
         private int id;
         private string name;
         private string address;
-        private int rating;
+        private double rating;
         private LinkedList<string> imagePathLinkedList;
         private string kitchen;
         private string description;
@@ -21,7 +22,9 @@ namespace Restaurant.Model.Tables
         private bool canCash;
         private bool canMasterCard;
         private bool canPayPal;
-
+        private Geopoint locationGeopoint;
+        private string phone;
+        private string email;
 
 
         public int Id
@@ -42,7 +45,7 @@ namespace Restaurant.Model.Tables
             set => address = value;
         }
 
-        public int Rating
+        public double Rating
         {
             get => rating;
             set => rating = value;
@@ -66,7 +69,7 @@ namespace Restaurant.Model.Tables
             set => description = value;
         }
 
-        public RestaurantSpec(string name, string address, int rating, LinkedList<string> imagePathLinkedList, string kitchen, string description, bool canCash, bool canMasterCard, bool canPayPal, bool canVisa)
+        public RestaurantSpec(string name, string address, double rating, LinkedList<string> imagePathLinkedList, string kitchen, string description, bool canCash, bool canMasterCard, bool canPayPal, bool canVisa, Geopoint locationGeopoint, string email, string phone)
         {
             this.id = ID_RESTAURANT_GENERATED++;
             this.name = name;
@@ -79,6 +82,9 @@ namespace Restaurant.Model.Tables
             this.canMasterCard = canMasterCard;
             this.canVisa = canVisa;
             this.canPayPal = canPayPal;
+            this.locationGeopoint = locationGeopoint;
+            this.phone = phone;
+            this.email = email;
         }
 
         public bool CanVisa
@@ -103,6 +109,24 @@ namespace Restaurant.Model.Tables
         {
             get => canPayPal;
             set => canPayPal = value;
+        }
+
+        public Geopoint LocationGeopoint
+        {
+            get => locationGeopoint;
+            set => locationGeopoint = value;
+        }
+
+        public string Phone
+        {
+            get => phone;
+            set => phone = value;
+        }
+
+        public string Email
+        {
+            get => email;
+            set => email = value;
         }
     }
 }

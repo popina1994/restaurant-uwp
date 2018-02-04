@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 using Windows.UI.Notifications;
 
 namespace Restaurant.Model
@@ -17,6 +18,9 @@ namespace Restaurant.Model
 
         private static Dictionary<int, Meal> mealsTable;
         private static KeyValuePair<int, Meal> mealsTableDefault;
+
+        private static Dictionary<int, CommentRestaurant> commentRestaurantsTable;
+        private static KeyValuePair<int, CommentRestaurant> commentRestaurantTableDefault;
 
         public static Dictionary<int, User> UserTable
         {
@@ -54,6 +58,18 @@ namespace Restaurant.Model
             set => mealsTableDefault = value;
         }
 
+        public static Dictionary<int, CommentRestaurant> CommentRestaurantsTable
+        {
+            get => commentRestaurantsTable;
+            set => commentRestaurantsTable = value;
+        }
+
+        public static KeyValuePair<int, CommentRestaurant> CommentRestaurantTableDefault
+        {
+            get => commentRestaurantTableDefault;
+            set => commentRestaurantTableDefault = value;
+        }
+
         private static void initUserTable()
         {
             userTableDefault = default(KeyValuePair<int, User>);
@@ -73,11 +89,13 @@ namespace Restaurant.Model
 
             LinkedList<string> meal1ImagePath = new LinkedList<string>();
             meal1ImagePath.AddLast(MEALS_PATH + "Bean.jpg");
-            Meal meal1 = new Meal("Пасуљ", 100, "Доручак", "Пасуљ, Бресква", "Врхунско", meal1ImagePath);
+            Meal meal1 = new Meal("Пасуљ", 100, "Доручак", "Пасуљ, Бресква", "Врхунско", meal1ImagePath,
+                                RestaurantTable.First(x => x.Value.Id == 0).Value);
 
             LinkedList<string> meal2ImagePath = new LinkedList<string>();
             meal2ImagePath.AddLast(MEALS_PATH + "Meat.jpg");
-            Meal meal2 = new Meal("Месо", 200,  "Ручак", "Коњ, кокошка", "Љуто", meal2ImagePath);
+            Meal meal2 = new Meal("Месо", 200,  "Ручак", "Коњ, кокошка", "Љуто", meal2ImagePath,
+                                RestaurantTable.First(x => x.Value.Id == 0).Value);
 
             mealsTable = new Dictionary<int, Meal> { { meal1.Id, meal1 }, { meal2.Id, meal2} };
 
@@ -87,24 +105,40 @@ namespace Restaurant.Model
         {
             restaurantTableDefault = default(KeyValuePair<int, RestaurantSpec>);
             string RESTAURANT_PATH = "/Assets/Images/Restaurant/";
+            Geopoint geopintKaraburma = new Geopoint(new BasicGeoposition() { Latitude = 44.8173, Longitude = 20.5096 });
 
             LinkedList<string> restaurant1ImagePath = new LinkedList<string>();
             restaurant1ImagePath.AddLast(RESTAURANT_PATH + "1.jpg");
-            RestaurantSpec restaurant1 = new RestaurantSpec("Карабурма", "Мије Ковачевића 7.b.", 5, restaurant1ImagePath, "тајландска", "Кида", true, true, false, false);
+            restaurant1ImagePath.AddLast(RESTAURANT_PATH + "2.jpg");
+            RestaurantSpec restaurant1 = new RestaurantSpec("Карабурма", "Мије Ковачевића 7.b.", 5, restaurant1ImagePath, 
+                                        "тајландска", "Кида", true, true, false, false, geopintKaraburma, "k1@k1.com", "011-000-000");
 
             LinkedList<string> restaurant2ImagePath = new LinkedList<string>();
-            restaurant2ImagePath.AddLast(RESTAURANT_PATH + "2.jpg");
-            RestaurantSpec restaurant2 = new RestaurantSpec("Карабурма 2", "Мије Ковачевића 8.b.", 5, restaurant2ImagePath, "мексичка", "кида", false, false, true, true);
+            restaurant2ImagePath.AddLast(RESTAURANT_PATH + "3.jpg");
+            restaurant2ImagePath.AddLast(RESTAURANT_PATH + "4.jpg");
+            RestaurantSpec restaurant2 = new RestaurantSpec("Карабурма 2", "Мије Ковачевића 8.b.", 4, restaurant2ImagePath, 
+                                        "мексичка", "кида", false, false, true, true, geopintKaraburma, "k2@k2.com", "011-000-001");
 
             restaurantTable = new Dictionary<int, RestaurantSpec>{{restaurant1.Id, restaurant1}, {restaurant2.Id, restaurant2}};
         }
-        
+
+        private static void initCommentRestaurantTable()
+        {
+            commentRestaurantTableDefault = default(KeyValuePair<int, CommentRestaurant>);
+            CommentRestaurant comment1 = new CommentRestaurant("Најбољи", 5, UserTable.First(x=>x.Value.Id == 1).Value, 
+                                                                RestaurantTable.First(x=>x.Value.Id ==0).Value);
+            CommentRestaurant comment2 = new CommentRestaurant("Онако", 4, UserTable.First(x => x.Value.Id == 1).Value,
+                RestaurantTable.First(x => x.Value.Id == 1).Value);
+            commentRestaurantsTable = new Dictionary<int, CommentRestaurant>(){{comment1.Id, comment1}, {comment2.Id, comment2}};
+        }
+
 
         static DatabaseModel()
         {
             initUserTable();
             initRestaurantTable();
             initMealsTable();
+            initCommentRestaurantTable();
         }
 
         

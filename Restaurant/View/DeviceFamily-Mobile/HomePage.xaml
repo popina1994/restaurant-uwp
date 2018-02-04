@@ -96,6 +96,7 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
                                 <TextBlock Text="Max оцена"  Margin="0, 14, 0, 0"></TextBlock>
                                 <Slider Name="SliderMaxRating" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                        Value="5"
                         ></Slider>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0, 0, 0,10">
@@ -162,12 +163,12 @@
                             <StackPanel Grid.Row="15" HorizontalAlignment="Center">
                                 <TextBlock Text="Плаћање:" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <CheckBox x:Name="CheckboxVisa" Content="Visa" />
-                                    <CheckBox x:Name="CheckboxMaster" Content="MasterCard" />
+                                    <CheckBox x:Name="CheckboxVisa" Content="Visa" IsThreeState="True" IsChecked="{x:Null}"/>
+                                    <CheckBox x:Name="CheckboxMaster" Content="MasterCard" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <CheckBox x:Name="CheckboxCash" Content="Кеш" />
-                                    <CheckBox x:Name="CheckboxPayPal" Content="PayPal" />
+                                     <CheckBox x:Name="CheckboxCash" Content="Кеш" IsThreeState="True" IsChecked="{x:Null}" />
+                                    <CheckBox x:Name="CheckboxPayPal" Content="PayPal" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
                             </StackPanel>
 

@@ -96,6 +96,7 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
                                 <TextBlock Text="Max оцена"  Margin="0, 14, 0, 0"></TextBlock>
                                 <Slider Name="SliderMaxRating" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                        Value="5"
                         ></Slider>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0, 0, 0,10">
@@ -160,14 +161,14 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="15">
-                                <TextBlock Text="Плаћање:" />
-                                <StackPanel Orientation="Horizontal" >
-                                    <CheckBox x:Name="CheckboxVisa" Content="Visa" />
-                                    <CheckBox x:Name="CheckboxMaster" Content="MasterCard" />
+                                <TextBlock Text="Плаћање:" HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <CheckBox x:Name="CheckboxVisa" Content="Visa" IsThreeState="True" IsChecked="{x:Null}"/>
+                                    <CheckBox x:Name="CheckboxMaster" Content="MasterCard" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <CheckBox x:Name="CheckboxCash" Content="Кеш" />
-                                    <CheckBox x:Name="CheckboxPayPal" Content="PayPal" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <CheckBox x:Name="CheckboxCash" Content="Кеш" IsThreeState="True" IsChecked="{x:Null}" />
+                                    <CheckBox x:Name="CheckboxPayPal" Content="PayPal" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -316,7 +317,8 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
                                             <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
-                                            <TextBlock Text="{x:Bind Ingridients, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="50"/>
+                                            <TextBlock Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
+                                            <TextBlock Text="{x:Bind Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="50"/>
                                         </StackPanel>
                                         <!--
                                     <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">

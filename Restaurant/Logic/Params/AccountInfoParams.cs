@@ -7,7 +7,7 @@ using Restaurant.Model.Tables;
 
 namespace Restaurant.Logic.Params
 {
-    class AccountInfoParams
+    class AccountInfoParams : AbstractParams
     {
         private User user;
 
