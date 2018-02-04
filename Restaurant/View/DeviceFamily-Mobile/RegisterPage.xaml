@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="10,17,10, 30">
-            <TextBlock Text="Login Page"  FontSize="40"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0"/>

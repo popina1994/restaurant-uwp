@@ -13,7 +13,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="10,17,10, 30">
-            <TextBlock Text="Login Page"  FontSize="40"/>
 
             <TextBlock HorizontalAlignment="Center" Text="Корисничко име" FontSize="30" Margin="0, 0, 0, 10"/>
             <TextBox  BorderBrush="LightGray" Name="TextBoxUserName" PlaceholderText="email"/>
