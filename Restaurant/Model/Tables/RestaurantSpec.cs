@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
@@ -8,7 +10,7 @@ using Windows.Devices.Geolocation;
 namespace Restaurant.Model.Tables
 {
 
-    public class RestaurantSpec
+    public class RestaurantSpec : INotifyPropertyChanged
     {
         private static int ID_RESTAURANT_GENERATED = 0;
         private int id;
@@ -25,6 +27,14 @@ namespace Restaurant.Model.Tables
         private Geopoint locationGeopoint;
         private string phone;
         private string email;
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
 
         public int Id
@@ -48,7 +58,11 @@ namespace Restaurant.Model.Tables
         public double Rating
         {
             get => rating;
-            set => rating = value;
+            set
+            {
+                rating = value;
+                this.OnPropertyChanged();
+            }
         }
 
         public LinkedList<string> ImagePathLinkedList

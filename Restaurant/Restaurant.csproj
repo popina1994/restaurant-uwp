@@ -75,6 +75,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -98,20 +99,25 @@
     <Compile Include="Logic\NegationBooleanVisibilityConverter.cs" />
     <Compile Include="Logic\Params\AbstractParams.cs" />
     <Compile Include="Logic\Params\AccountInfoParams.cs" />
+    <Compile Include="Logic\Params\MealInfoParams.cs" />
     <Compile Include="Logic\Params\RestaurantInfoParams.cs" />
     <Compile Include="Logic\Params\ShellParams.cs" />
     <Compile Include="Logic\TypeStringConverter.cs" />
     <Compile Include="Logic\UserVisibilityConverter.cs" />
+    <Compile Include="Model\Tables\CommentMeal.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
     <Compile Include="Model\Tables\CommentRestaurant.cs" />
     <Compile Include="Model\Tables\Meal.cs" />
     <Compile Include="Model\Tables\RestaurantSpec.cs" />
+    <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\MealInfoViewModel.cs" />
     <Compile Include="ViewModel\RestaurantInfoViewModel.cs" />
     <Compile Include="ViewModel\RestaurantViewModel.cs" />
     <Compile Include="ViewModel\ShellModel.cs" />
     <Compile Include="Model\Tables\User.cs" />
     <Compile Include="ViewModel\AccountInfoViewModel.cs" />
     <Compile Include="ViewModel\SideDrawerItem.cs" />
+    <Compile Include="ViewModel\ViewModelPayment.cs" />
     <Compile Include="View\AccountEditPage.xaml.cs">
       <DependentUpon>AccountEditPage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +136,12 @@
     </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MealInfoPage.xaml.cs">
+      <DependentUpon>MealInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
@@ -214,6 +226,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MealInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

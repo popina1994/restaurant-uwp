@@ -22,6 +22,10 @@ namespace Restaurant.Model
         private static Dictionary<int, CommentRestaurant> commentRestaurantsTable;
         private static KeyValuePair<int, CommentRestaurant> commentRestaurantTableDefault;
 
+        private static Dictionary<int, CommentMeal> commentMealTable;
+        private static KeyValuePair<int, CommentMeal> commentMealTableDefault;
+
+
         public static Dictionary<int, User> UserTable
         {
             get => userTable;
@@ -70,6 +74,19 @@ namespace Restaurant.Model
             set => commentRestaurantTableDefault = value;
         }
 
+
+        public static Dictionary<int, CommentMeal> CommentMealTable
+        {
+            get => commentMealTable;
+            set => commentMealTable = value;
+        }
+
+        public static KeyValuePair<int, CommentMeal> CommentMealTableDefault
+        {
+            get => commentMealTableDefault;
+            set => commentMealTableDefault = value;
+        }
+
         private static void initUserTable()
         {
             userTableDefault = default(KeyValuePair<int, User>);
@@ -90,12 +107,12 @@ namespace Restaurant.Model
             LinkedList<string> meal1ImagePath = new LinkedList<string>();
             meal1ImagePath.AddLast(MEALS_PATH + "Bean.jpg");
             Meal meal1 = new Meal("Пасуљ", 100, "Доручак", "Пасуљ, Бресква", "Врхунско", meal1ImagePath,
-                                RestaurantTable.First(x => x.Value.Id == 0).Value);
+                                RestaurantTable.First(x => x.Value.Id == 0).Value, 4);
 
             LinkedList<string> meal2ImagePath = new LinkedList<string>();
             meal2ImagePath.AddLast(MEALS_PATH + "Meat.jpg");
             Meal meal2 = new Meal("Месо", 200,  "Ручак", "Коњ, кокошка", "Љуто", meal2ImagePath,
-                                RestaurantTable.First(x => x.Value.Id == 0).Value);
+                                RestaurantTable.First(x => x.Value.Id == 0).Value, 5);
 
             mealsTable = new Dictionary<int, Meal> { { meal1.Id, meal1 }, { meal2.Id, meal2} };
 
@@ -132,6 +149,18 @@ namespace Restaurant.Model
             commentRestaurantsTable = new Dictionary<int, CommentRestaurant>(){{comment1.Id, comment1}, {comment2.Id, comment2}};
         }
 
+        private static void initCommentMealsTable()
+        {
+            commentMealTableDefault = default(KeyValuePair<int, CommentMeal>);
+            CommentMeal comment1 = new CommentMeal("Најбољи", UserTable.First(x => x.Value.Id == 1).Value,
+                MealsTable.First(x => x.Value.Id == 0).Value, 5);
+            CommentMeal comment2 = new CommentMeal("Онако", UserTable.First(x => x.Value.Id == 1).Value,
+                MealsTable.First(x => x.Value.Id == 1).Value, 4);
+            commentMealTable = new Dictionary<int, CommentMeal>() { { comment1.Id, comment1 }, { comment2.Id, comment2 } };
+        }
+
+    
+
 
         static DatabaseModel()
         {
@@ -139,6 +168,7 @@ namespace Restaurant.Model
             initRestaurantTable();
             initMealsTable();
             initCommentRestaurantTable();
+            initCommentMealsTable();
         }
 
         

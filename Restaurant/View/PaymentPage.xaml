@@ -1,0 +1,106 @@
+﻿<Page
+    x:Class="Restaurant.View.PaymentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Restaurant.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,17,10, 30">
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Укупно" FontSize="30" />
+                <Border Grid.Column="1"  >
+                <TextBlock Grid.Column="1"  Name="TextBlockPayement"  Text="NESTO"  TextAlignment="Center"/>
+                </Border>
+            </Grid>
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Начин плаћања" FontSize="30" />
+                <Grid Margin="0, 10" HorizontalAlignment="Center" Grid.Column="1">  
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Column="0" x:Name="RadioButtonOptionPayPal" Content="PayPal" ></RadioButton>
+                    <RadioButton Grid.Column="1" x:Name="RadioButtonOptionVisa" Content="Visa"></RadioButton>
+                    <RadioButton Grid.Column="2" x:Name="RadioButtonOptionMasterCard" Content="MasterCard"></RadioButton>
+                    <RadioButton Grid.Column="3" x:Name="RadioButtonOptionCash" Content="Cash" IsChecked="True"></RadioButton>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxFirstName" PlaceholderText="Име"
+                          TextAlignment="Center"/>
+            </Grid>
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxLastName" PlaceholderText="Презиме"
+                          TextAlignment="Center"/>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Број картице" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxCardNumber" PlaceholderText="xxx-xxxx-xxxxx-xxxx"
+                          TextAlignment="Center"/>
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Grid.Column="0" Text="CVV"  FontSize="30" HorizontalAlignment="Center"/>
+
+                <PasswordBox Grid.Column="1" BorderBrush="LightGray" Name="PasswordBoxCVV"  PlaceholderText="xxx"
+                             PasswordRevealMode="Peek" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            </Grid>
+
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Важи до" FontSize="30" />
+                <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxValidTo" PlaceholderText="dd/mm/yyyy"
+                          TextAlignment="Center"/>
+            </Grid>
+
+            <TextBlock  Text="Грешка" Margin="0, 10, 0, 0" FontSize="30" Foreground="Red"  HorizontalAlignment="Center"
+                        Visibility="Collapsed" Name="TextBlockError"/>
+
+
+            <Button Content="Плати" FontSize="30" Name="ButtonPay" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"/>
+            </StackPanel>
+    </Grid>
+</Page>

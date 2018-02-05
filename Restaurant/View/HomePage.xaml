@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Pivot Grid.Row="1" SelectionChanged="Pivot_OnSelectionChanged">
+        <Pivot Grid.Row="1" SelectionChanged="Pivot_OnSelectionChanged" x:Name="PivotGlobal">
             <Pivot.LeftHeader>
                 <Grid>
                     <AppBarButton Icon="Find" x:Name="CompactSearchBox" Visibility="Collapsed"
@@ -50,7 +50,7 @@
                 />
                 </Grid>
             </Pivot.LeftHeader>
-            <PivotItem Header="Ресторани" Name="PivotRestaurant">
+            <PivotItem Header="Ресторани" x:Name="PivotItemRestaurant">
 
                 <StackPanel Orientation="Horizontal" >
                     <ScrollViewer>
@@ -204,11 +204,10 @@
                                         <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
                                             <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
                                                 Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
-                                            <Button Background="LightGray" >
+                                            <Button Background="LightGray"  x:Name="ButtonRestaurantsMeals" Click="ButtonRestaurantsMeals_OnClick">
                                                 <StackPanel>
                                                     <Image Source="/Assets/Icons/Button/Order.png" Height="62" Width="200"/>
-                                                    <TextBlock Text="Јела" Foreground="Black"
-                                                           HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="Јела" Foreground="Black" HorizontalAlignment="Center"/>
                                                 </StackPanel>
                                             </Button>
                                         </StackPanel>
@@ -221,7 +220,7 @@
 
             </PivotItem>
 
-            <PivotItem Header="Јела" Name="PivotMeal">
+            <PivotItem Header="Јела" x:Name="PivotItemMeal">
                 <StackPanel Orientation="Horizontal" >
                     <ScrollViewer>
                         <Grid Margin="0, 0, 0, 0">
@@ -250,8 +249,8 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
-                                <TextBlock Text="Адреса" Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxRestaurantMeal" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBlock Text="Ресторан" Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxRestaurantMeal" Width="183" Margin="0, 10, 0, 0"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
                                 <TextBlock Text="Кухиња"  Margin="-1, 14, 0, 0"></TextBlock>
@@ -317,22 +316,28 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
                                             <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
-                                            <TextBlock Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
-                                            <TextBlock Text="{x:Bind Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="50"/>
+                                            <TextBlock Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="50"/>
+                                            <TextBlock Text="{x:Bind Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="30"/>
                                         </StackPanel>
-                                        <!--
-                                    <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
-                                        <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
-                                                Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
-                                        <Button Background="LightGray" >
-                                            <StackPanel>
-                                                <Image Source="/Assets/Icons/Button/Order.png" Height="62" Width="200"/>
-                                                <TextBlock Text="Јела" Foreground="Black"
-                                                           HorizontalAlignment="Center"/>
+
+                                        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
+                                            <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                                                    Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                                <TextBlock Text="{x:Bind Price}" FontSize="30"></TextBlock>
                                             </StackPanel>
-                                        </Button>
-                                    </StackPanel>
-                                    -->
+                                            <RelativePanel>
+                                                <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
+                                                    Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
+                                                <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
+                                                         RelativePanel.RightOf="ButtonDecAmount"/>
+                                                <Button Grid.Row="1" Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    RelativePanel.RightOf="TextBoxAmount" Width="50" Height="32" Background="ForestGreen"
+                                                        Click="ButtonIncAmount_OnClick"/>
+                                            </RelativePanel>
+                                        </StackPanel>
+                                        
                                     </Grid>
                                 </Grid>
                             </DataTemplate>

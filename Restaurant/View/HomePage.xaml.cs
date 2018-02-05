@@ -137,13 +137,42 @@ namespace Restaurant
 
         private void ListViewMeals_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.AddedItems.Count > 0)
+            {
+
+                Meal selectedElement = e.AddedItems[0] as Meal;
+                MealInfoParams mealInfoParams = new MealInfoParams(selectedElement);
+                Navigation.Navigate(typeof(MealInfoPage), mealInfoParams);
+            }
         }
 
         private void ButtonSearchRestaurantShow_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.IsSearchRestaurantShown = !ViewModel.IsSearchRestaurantShown;
             ButtonSearchRestaurantShow.Content = ViewModel.IsSearchRestaurantShown ? "\uE70E" : "\uE70D";
+        }
+
+        private void ButtonIncAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)e.OriginalSource;
+            Meal meal = (Meal)button.DataContext;
+            meal.Amount++;
+        }
+
+        private void ButtonDecAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            Button button = (Button)e.OriginalSource;
+            Meal meal = (Meal) button.DataContext;
+            meal.Amount--;
+        }
+
+        private void ButtonRestaurantsMeals_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button buttonOrder = (Button) e.OriginalSource;
+            RestaurantSpec selectedElement = (RestaurantSpec)buttonOrder.DataContext;
+            PivotGlobal.SelectedItem = PivotItemMeal;
+            TextBoxRestaurantMeal.Text = selectedElement.Name;
         }
     }
 }

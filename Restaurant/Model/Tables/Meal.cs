@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurant.Model.Tables
 {
-    public class Meal
+    public class Meal : INotifyPropertyChanged
     {
         private static int ID_MEALS_GENERATED = 0;
         private int id;
@@ -16,9 +18,17 @@ namespace Restaurant.Model.Tables
         private string ingridients;
         private string description;
         private LinkedList<string> imagePathLinkedList;
+        private double rating;
+        private int amount;
 
         private RestaurantSpec restaurant;
 
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public int Id
         {
@@ -63,7 +73,8 @@ namespace Restaurant.Model.Tables
             set => imagePathLinkedList = value;
         }
 
-        public Meal(string name, int price, string category, string ingridients, string description, LinkedList<string> imagePathLinkedList, RestaurantSpec restaurant)
+
+        public Meal(string name, int price, string category, string ingridients, string description, LinkedList<string> imagePathLinkedList, RestaurantSpec restaurant, double rating)
         {
             this.id = ID_MEALS_GENERATED++;
             this.name = name;
@@ -72,13 +83,27 @@ namespace Restaurant.Model.Tables
             this.ingridients = ingridients;
             this.description = description;
             this.imagePathLinkedList = imagePathLinkedList;
-            this.restaurant = Restaurant;
+            this.restaurant = restaurant;
+            this.rating = rating;
+            this.amount = 0;
         }
 
         public RestaurantSpec Restaurant
         {
             get => restaurant;
             set => restaurant = value;
+        }
+
+        public double Rating
+        {
+            get => rating;
+            set => rating = value;
+        }
+
+        public int Amount
+        {
+            get => amount;
+            set { amount = value; this.OnPropertyChanged();}
         }
     }
 }
