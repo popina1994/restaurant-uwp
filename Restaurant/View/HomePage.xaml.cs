@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -33,6 +34,7 @@ namespace Restaurant
         public HomePage()
         {
             this.InitializeComponent();
+            var accesStatus = Geolocator.RequestAccessAsync();
 
             ObservableCollection<RestaurantSpec> ocRestaurantSpecs = new ObservableCollection<RestaurantSpec>();
 
@@ -52,7 +54,17 @@ namespace Restaurant
                 ocMeals.Add(it);
             }
 
-            this.viewModel = new RestaurantViewModel(ocRestaurantSpecs, ocMeals);
+            ObservableCollection<Order> ocOrders = new ObservableCollection<Order>();
+
+            var matches3 = DatabaseModel.OrdersTable.Where(pair => true).Select(pair => pair.Value);
+
+            foreach (var it in matches3)
+            {
+                ocOrders.Add(it);
+            }
+
+
+            this.viewModel = new RestaurantViewModel(ocRestaurantSpecs, ocMeals, ocOrders);
         }
 
         public RestaurantViewModel ViewModel
@@ -173,6 +185,16 @@ namespace Restaurant
             RestaurantSpec selectedElement = (RestaurantSpec)buttonOrder.DataContext;
             PivotGlobal.SelectedItem = PivotItemMeal;
             TextBoxRestaurantMeal.Text = selectedElement.Name;
+        }
+
+        private void ListViewOrders_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                Order selectedElement = e.AddedItems[0] as Order;
+                OrderInfoParams orderInfoParams = new OrderInfoParams(selectedElement);
+                Navigation.Navigate(typeof(OrderInfoPage), orderInfoParams);
+            }
         }
     }
 }

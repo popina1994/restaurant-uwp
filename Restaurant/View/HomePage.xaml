@@ -295,7 +295,7 @@
                     <ListView ItemsSource="{x:Bind ViewModel.Meals, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
                           Margin="20, 0, 0, 0">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Meal">
+                            <DataTemplate x:Name="DoubleLineDataTemplateOrders" x:DataType="tables:Meal">
                                 <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -347,15 +347,110 @@
             </PivotItem>
 
             <PivotItem Header="Поруџбине" Name="PivotOrder">
-                <StackPanel>
-                    <TextBlock><Run Text="To provide a great experience from mobile to desktop, Pivot now supports two header styles, Dynamic Headers and Static Headers."/><LineBreak/></TextBlock>
-                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"><Run Text="Dynamic Headers"/></TextBlock>
-                    <TextBlock><Run Text="With a focus on mobile and small screen, dynamic headers automatically revolve in the header area with the currently selected PivotItem always the first item."/><LineBreak/><Run Text=" "/><Run Text="Dynamic headers are automatically enabled when the combined width of your PivotItem.Header elements exceeds the width availabe to the Pivot control."/><LineBreak/></TextBlock>
-                    <Image Source="/Assets/DynamicHeader.png" Width="350" Stretch="Uniform" HorizontalAlignment="Left" />
+                <StackPanel Orientation="Horizontal" >
+                    <ScrollViewer>
+                        <Grid Margin="0, 0, 0, 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"><Run Text="Static Headers"/></TextBlock>
-                    <TextBlock><Run Text="Targeting devices with larger displays, static headers keep a fixed position in the header area, regardless of which item is currently selected."/><LineBreak/><Run Text=" "/><Run Text="Static headers are automatically enabled when the combined width of your PivotItem.Header elements fits within the width available to the Pivot control"/><LineBreak/></TextBlock>
-                    <Image Source="/Assets/StaticHeader.png" Width="350" Stretch="Uniform" HorizontalAlignment="Left" />
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                                <TextBlock Text="Ресторан" Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxRestaurantMeal1" Width="183" Margin="0, 10, 0, 0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                                <TextBlock Text="Кухиња"  Margin="-1, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxKitchenMeal1" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                                <TextBlock Text="Min цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMinPrice1" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="1000" StepFrequency="0.1"
+                                ></Slider>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                                <TextBlock Text="Max цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMaxPrice1" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="1000" StepFrequency="0.1"
+                            ></Slider>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                                <TextBlock Text="Категорија"  Margin="-9, 14, 0, 0"></TextBlock>
+                                <ComboBox Name="ComboBoxCategory1" Width="150" 
+                                          SelectedIndex="0"  Margin="10, 10, 0, 0">
+                                    <x:String>Доручак</x:String>
+                                    <x:String>Ручак</x:String>
+                                    <x:String>Вечера</x:String>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                                <TextBlock Text="Састојци"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxIngridientsMeal1" Width="150" Margin="10, 10, 0, 0"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center">
+                                <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxDescriptionMeal1" Width="150" Margin="35, 10, 0, 0"></TextBox>
+                            </StackPanel>
+
+
+
+                        </Grid>
+                    </ScrollViewer>
+
+                    <ListView ItemsSource="{x:Bind ViewModel.Orders, Mode=OneWay}" Name="ListViewOrders" SelectionChanged="ListViewOrders_OnSelectionChanged"
+                          Margin="20, 0, 0, 0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Order">
+                                <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <ListView Grid.Column="0" ItemsSource="{x:Bind OrderMealOptions.Values, Mode=OneWay}" Name="ListViewMealsOptions"
+                                              Margin="20, 0, 0, 0">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:Name="DataTemplatMeals" x:DataType="tables:OrderMealOption">
+                                                <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{x:Bind Meal.Name}"></TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                    <TextBlock Grid.Column="1" Text="{x:Bind User.UserName}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </PivotItem>
 

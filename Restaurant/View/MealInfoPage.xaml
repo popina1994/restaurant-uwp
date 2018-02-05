@@ -50,21 +50,22 @@
             </Grid>
             <Grid Grid.Row="1" Margin="10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <StackPanel  Grid.Row="0">
+                <StackPanel  Grid.Row="0" Visibility="{x:Bind ViewModel.CanAddComments}">
                     <TextBox   IsSpellCheckEnabled="True" SelectionHighlightColor="Green" TextWrapping="Wrap"
                           Height="60" Margin="10, 0, -10, 0" x:Name="TextBoxComment"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10, -30, 0, 0" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10, -30, 0, 0" VerticalAlignment="Center" 
+                            Visibility="{x:Bind ViewModel.CanAddComments}">
                     <Button Content="Додај коментар" HorizontalAlignment="Left" VerticalAlignment="Center"
                             x:Name="ButtonAddComment" Click="ButtonAddComment_OnClick"></Button>
                     <Slider Width="200" Minimum="1" Maximum="5" StepFrequency="1"
                             Value="5" VerticalAlignment="Center" HorizontalAlignment="Right" TickFrequency="1"
                             TickPlacement="Outside" 
-                            Margin="130, 30, 0, 0" Header="Оцени" x:Name="SliderRating"/>
+                            Margin="125, 30, 0, 0" Header="Оцени" x:Name="SliderRating"/>
                 </StackPanel>
                 <ScrollViewer Grid.Row="2">
                     <ListView ItemsSource="{x:Bind ViewModel.CommentMeals, Mode=OneWay}" Name="ListViewRestaurant" 

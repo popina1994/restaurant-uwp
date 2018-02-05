@@ -69,7 +69,25 @@ namespace Restaurant.View
 
             ViewModel.CommentMeals = ocComm;
 
-            var accesStatus = Geolocator.RequestAccessAsync();
+            User user = Navigation.Shell.Model.User;
+
+            ViewModel.IsOrder = user.Type == User.TYPE_ORDERER;
+            ViewModel.CanAddComments = false;
+            foreach (var it in DatabaseModel.OrdersTable.Values)
+            {
+                if ((it.User.Id == user.Id) && (it.Status != Order.NotDelivered))
+                {
+                    foreach (var itIn in it.OrderMealOptions.Values)
+                    {
+                        if (itIn.Meal.Id == ViewModel.Meal.Id)
+                        {
+                            ViewModel.CanAddComments = true;
+                            break;
+                        }
+                    }
+                    if (ViewModel.CanAddComments) break;
+                }
+            }
         }
 
         private void ButtonRightImage_OnClick(object sender, RoutedEventArgs e)

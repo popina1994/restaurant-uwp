@@ -65,7 +65,7 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-        <Button Grid.Column="1" Content="БИРАЊЕ НАЧИНА ПЛАЋАЊА" FontSize="50" Margin="200, 0, 0, 0" x:Name="ButtonChoosePayment"
+        <Button Grid.Column="1" Content="БИРАЊЕ ПЛАЋАЊА" FontSize="50" Margin="50, 0, 0, 0" x:Name="ButtonChoosePayment"
                 Click="ButtonChoosePayment_OnClick"/>
     </Grid>
 </Page>

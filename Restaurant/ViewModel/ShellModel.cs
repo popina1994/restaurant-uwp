@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Restaurant.Model;
 using Restaurant.Model.Tables;
 
 namespace Restaurant.ViewModel
@@ -11,8 +12,10 @@ namespace Restaurant.ViewModel
 
         private static string UNREGISTERED = "     Нерегистровани";
         private string fullName = UNREGISTERED;
-        private int type = User.TYPE_ORDERER;
+        private int type = User.TYPE_UNREGISTERED;
         private string userName;
+
+        private User user = DatabaseModel.UnregisteredUser;
 
         public string FullName
         {
@@ -41,6 +44,12 @@ namespace Restaurant.ViewModel
             set => userName = value;
         }
 
+        public User User
+        {
+            get => user;
+            set => user = value;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -51,10 +60,10 @@ namespace Restaurant.ViewModel
         public void Unregister()
         {
             this.FullName = UNREGISTERED;
-            this.Type = User.TYPE_ORDERER;
+            this.Type = User.TYPE_UNREGISTERED;
             this.UserName = null;
             this.IsRegistered = false;
-
+            this.user = DatabaseModel.UnregisteredUser;
         }
     }
 }

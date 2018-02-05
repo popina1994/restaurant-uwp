@@ -14,6 +14,7 @@ namespace Restaurant.ViewModel
     {
         private ObservableCollection<RestaurantSpec> restaurants;
         private ObservableCollection<Meal> meals;
+        private ObservableCollection<Order> orders;
         private string selectedPivot;
 
         private bool isSearchRestaurantShown = false;
@@ -31,11 +32,15 @@ namespace Restaurant.ViewModel
             set => restaurants = value;
         }
 
-        public RestaurantViewModel(ObservableCollection<RestaurantSpec> restaurants, ObservableCollection<Meal> meals)
+
+
+        public RestaurantViewModel(ObservableCollection<RestaurantSpec> restaurants, ObservableCollection<Meal> meals, ObservableCollection<Order> orders)
         {
             this.restaurants = restaurants;
             this.meals = meals;
+            this.orders = orders;
         }
+
 
         public ObservableCollection<Meal> Meals
         {
@@ -58,6 +63,12 @@ namespace Restaurant.ViewModel
                 isSearchRestaurantShown = value;
                 this.OnPropertyChanged();
             }
+        }
+
+        public ObservableCollection<Order> Orders
+        {
+            get => orders;
+            set => orders = value;
         }
     }
 }

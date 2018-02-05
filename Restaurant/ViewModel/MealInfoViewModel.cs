@@ -16,12 +16,28 @@ namespace Restaurant.ViewModel
         private string imagePath;
         private int curImageIdx;
 
+        private bool isOrder;
+        private bool canAddComments;
+
         private ObservableCollection<CommentMeal> commentMeals;
+
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public bool IsOrder
+        {
+            get => isOrder;
+            set => isOrder = value;
+        }
+
+        public bool CanAddComments
+        {
+            get => canAddComments;
+            set => canAddComments = value;
         }
 
         public Meal Meal

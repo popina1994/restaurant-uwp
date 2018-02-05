@@ -54,6 +54,7 @@ namespace Restaurant
             Navigation.Shell.Model.FullName = "     " + userPair.Value.FirstName + " " + userPair.Value.LastName;
             Navigation.Shell.Model.UserName = userPair.Value.UserName;
             Navigation.Shell.Model.Type = userPair.Value.Type;
+            Navigation.Shell.Model.User = user;
             Navigation.Navigate(typeof(HomePage));
 
         }

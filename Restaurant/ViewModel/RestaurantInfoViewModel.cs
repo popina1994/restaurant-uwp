@@ -15,7 +15,21 @@ namespace Restaurant.ViewModel
         private RestaurantSpec restaurant;
         private string imagePath;
         private int curImageIdx;
+        private bool canAddComments;
+        private bool isOrder;
         private ObservableCollection<CommentRestaurant> commentRestaurants;
+
+        public bool CanAddComments
+        {
+            get => canAddComments;
+            set => canAddComments = value;
+        }
+
+        public bool IsOrder
+        {
+            get => isOrder;
+            set => isOrder = value;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
