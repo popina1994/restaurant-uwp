@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace Restaurant.Model.Tables
 {
@@ -21,6 +23,18 @@ namespace Restaurant.Model.Tables
         private string dateTimeOrdered;
         private string dateTimeDelivered;
 
+        private static readonly SolidColorBrush[] GROUPS_COLOURS =
+        {
+            new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)),
+            new SolidColorBrush(Color.FromArgb(255, 255, 255, 0)),
+            new SolidColorBrush(Color.FromArgb(255, 0, 0, 255)),
+            new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)),
+            new SolidColorBrush(Color.FromArgb(127, 255, 255, 255))
+
+        };
+
+
+        private int group;
         private static string DELIVERED = "ИСПОРУЧЕНО";
         private static string CANCELED = "ОТКАЗАНО";
         private static string NOT_DELIVERED = "У ПУТУ";
@@ -30,16 +44,12 @@ namespace Restaurant.Model.Tables
         private static string PAID_MASTER= "Master Card-ом";
         private static string PAID_CASH = "Кешом";
 
-
-
-
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         public int Id
         {
@@ -125,7 +135,17 @@ namespace Restaurant.Model.Tables
             set => dateTimeDelivered = value;
         }
 
-        public Order(User user, Dictionary<int, OrderMealOption> orderMealOptions, int amount, string status, string paidBy, string dateTimeOrdered, string dateTimeDelivered)
+
+        public static SolidColorBrush[] GroupsColours => GROUPS_COLOURS;
+
+        public int Group
+        {
+            get => group;
+            set { group = value; this.OnPropertyChanged();}
+        }
+
+
+        public Order(User user, Dictionary<int, OrderMealOption> orderMealOptions, int amount, string status, string paidBy, string dateTimeOrdered, string dateTimeDelivered, int group)
         {
             this.id = ID_ORDER++;
             this.user = user;
@@ -135,6 +155,7 @@ namespace Restaurant.Model.Tables
             this.paidBy = paidBy;
             this.dateTimeDelivered = dateTimeDelivered;
             this.dateTimeOrdered = dateTimeOrdered;
+            this.group = group;
         }
     }
 }

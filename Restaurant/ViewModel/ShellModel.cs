@@ -9,6 +9,8 @@ namespace Restaurant.ViewModel
     {
 
         private bool isRegistered = false;
+        private bool isDeliverer = false;
+        private bool isOrderer = false;
 
         private static string UNREGISTERED = "     Нерегистровани";
         private string fullName = UNREGISTERED;
@@ -23,10 +25,29 @@ namespace Restaurant.ViewModel
             set { fullName = value; this.OnPropertyChanged();}
         }
 
+        public bool IsDeliverer
+        {
+            get => isDeliverer;
+            set { isDeliverer = value; this.OnPropertyChanged(); }
+        }
+
+        public bool IsOrderer
+        {
+            get => isOrderer;
+            set
+            {
+                isOrderer = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+
         public int Type
         {
             get => type;
-            set { type = value; this.OnPropertyChanged();}
+            set { type = value;
+                this.OnPropertyChanged();
+            }
         }
 
         public bool IsRegistered
@@ -61,6 +82,8 @@ namespace Restaurant.ViewModel
         {
             this.FullName = UNREGISTERED;
             this.Type = User.TYPE_UNREGISTERED;
+            this.IsOrderer = false;
+            this.IsDeliverer = false;
             this.UserName = null;
             this.IsRegistered = false;
             this.user = DatabaseModel.UnregisteredUser;

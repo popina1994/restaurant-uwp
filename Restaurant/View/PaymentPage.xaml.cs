@@ -98,7 +98,7 @@ namespace Restaurant.View
 
             User user = DatabaseModel.UserTable.FirstOrDefault(x => x.Value.UserName == Navigation.Shell.Model.UserName).Value;
             
-            Order order = new Order(user, orderMealOptions, fulAmount, Order.NotDelivered, paidBy, date, "");
+            Order order = new Order(user, orderMealOptions, fulAmount, Order.NotDelivered, paidBy, date, "", 0);
             DatabaseModel.OrdersTable.Add(order.Id, order);
         }
     }

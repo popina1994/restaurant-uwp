@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Restaurant.Logic.Params;
+    using Restaurant.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,12 +32,40 @@ namespace Restaurant
 
         Dictionary<string, SideDrawerItem> sideDrawerItems = new Dictionary<string, SideDrawerItem>()
         {
-            {"SideDrawerItemAccount", new SideDrawerItem(){ Name="SideDrawerItemAccount", NavigationDestination = typeof(AccountInfoPage), Registered = true, Unregistered = true, IsMenu = false}},
-            {"SideDrawerItemSettings", new SideDrawerItem(){ Name = "SideDrawerItemSettings", NavigationDestination = typeof(SettingsPage), Registered = true, Unregistered = true, IsMenu =  false} },
-            {"SideDrawerItemHome", new SideDrawerItem(){ Name = "SideDrawerItemHome", NavigationDestination = typeof(HomePage), Registered = true, Unregistered = true, IsMenu = true}},
-            {"SideDrawerItemCart", new SideDrawerItem(){ Name = "SideDrawerItemCart", NavigationDestination = typeof(CartPage), Registered = true, Unregistered = false, IsMenu = true}},
-            {"SideDrawerItemRegister", new SideDrawerItem(){ Name = "SideDrawerItemRegister", NavigationDestination = typeof(RegisterPage), Registered = false, Unregistered = true, IsMenu = false}},
-            {"SideDrawerItemLogin", new SideDrawerItem(){ Name = "SideDrawerItemLogin", NavigationDestination = typeof(LoginPage), Registered = false, Unregistered = true, IsMenu = false}}
+            {"SideDrawerItemAccount", new SideDrawerItem()
+            {
+                Name ="SideDrawerItemAccount", NavigationDestination = typeof(AccountInfoPage),
+                Orderer = true, Unregistered = true, IsMenu = false, Deliverer = true}},
+            {"SideDrawerItemSettings", new SideDrawerItem()
+            {
+                Name = "SideDrawerItemSettings", NavigationDestination = typeof(SettingsPage),
+                Orderer = true, Unregistered = true, IsMenu =  false, Deliverer = true
+            } },
+            {"SideDrawerItemHome", new SideDrawerItem(){
+                Name = "SideDrawerItemHome", NavigationDestination = typeof(HomePage),
+                Orderer= true, Unregistered = true, IsMenu = true, Deliverer = true
+
+            }},
+            {"SideDrawerItemCart", new SideDrawerItem()
+            {
+                Name = "SideDrawerItemCart", NavigationDestination = typeof(CartPage),
+                Orderer = true, Unregistered = false, IsMenu = true, Deliverer = false
+            }},
+            {"SideDrawerItemRegister", new SideDrawerItem()
+            {
+                Name = "SideDrawerItemRegister", NavigationDestination = typeof(RegisterPage),
+                Orderer = false, Unregistered = true, IsMenu = false, Deliverer = false
+            }},
+            {"SideDrawerItemLogin", new SideDrawerItem()
+            {
+                Name = "SideDrawerItemLogin", NavigationDestination = typeof(LoginPage),
+                Orderer = false, Unregistered = true, IsMenu = false, Deliverer = false
+            }},
+            {"SideDrawerItemMap", new SideDrawerItem()
+            {
+                Name = "SideDrawerItemMap", NavigationDestination = typeof(MapPage),
+                Orderer = false, Unregistered = false, IsMenu = true, Deliverer = true
+            }}
         };
 
         public Shell()
@@ -83,15 +112,8 @@ namespace Restaurant
 
         private bool isMenuOptionAllowed(SideDrawerItem item)
         {
-            if (item.Registered && Model.IsRegistered)
-            {
-                return true;
-            }
-            if (item.Unregistered && !Model.IsRegistered)
-            {
-                return true;
-            }
-            return false;
+            return ((item.Deliverer && Model.IsDeliverer) || (item.Orderer && Model.IsOrderer)
+                    || (item.Unregistered && !Model.IsRegistered));
         }
 
         private void updateSideDrawer(FrameworkElement selectedElement, bool isMenu)

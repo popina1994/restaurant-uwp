@@ -9,8 +9,10 @@ namespace Restaurant.ViewModel
         private string name;
         private bool registered;
         private bool isMenu;
+        private bool orderer;
 
         private bool unregistered;
+        private bool deliverer;
 
         public Type NavigationDestination
         {
@@ -40,6 +42,18 @@ namespace Restaurant.ViewModel
         {
             get => isMenu;
             set => isMenu = value;
+        }
+
+        public bool Deliverer
+        {
+            get => deliverer;
+            set => deliverer = value;
+        }
+
+        public bool Orderer
+        {
+            get => orderer;
+            set => orderer = value;
         }
     }
 }

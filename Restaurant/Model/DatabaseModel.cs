@@ -225,10 +225,10 @@ namespace Restaurant.Model
             ordersDefault = default(KeyValuePair<int, Order>);
             Order order1 = new Order(UserTable.First(x => x.Value.Id == 1).Value, new Dictionary<int, OrderMealOption>()
                 { {orderMeal1.Id, orderMeal1}, {orderMeal2.Id, orderMeal2}}, orderMeal1.Amount * orderMeal1.Meal.Price + orderMeal2.Amount * orderMeal2.Meal.Price, 
-                Order.NotDelivered, Order.PaidMaster, "11-11-2017", "");
+                Order.NotDelivered, Order.PaidMaster, "11-11-2017", "", 0);
             Order order2 = new Order(UserTable.First(x => x.Value.Id == 1).Value, new Dictionary<int, OrderMealOption>()
                     { {orderMeal3.Id, orderMeal3}, {orderMeal4.Id, orderMeal4}}, orderMeal3.Amount * orderMeal3.Meal.Price + orderMeal4.Amount * orderMeal4.Meal.Price, 
-                Order.Delivered, Order.PaidVisa, "11-11-2017", "12-11-2017");
+                Order.Delivered, Order.PaidVisa, "11-11-2017", "12-11-2017", 1);
             ordersTable = new Dictionary<int, Order>() { { order1.Id, order1 }, { order2.Id, order2 } };
         }
     

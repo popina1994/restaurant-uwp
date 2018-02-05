@@ -18,6 +18,7 @@ using Restaurant.Model;
 using Restaurant.Model.Tables;
 using Restaurant.Services;
 using Restaurant.Logic.Params;
+using Restaurant.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -50,11 +51,15 @@ namespace Restaurant
                 return;
             }
 
-            Navigation.Shell.Model.IsRegistered = true;
-            Navigation.Shell.Model.FullName = "     " + userPair.Value.FirstName + " " + userPair.Value.LastName;
-            Navigation.Shell.Model.UserName = userPair.Value.UserName;
-            Navigation.Shell.Model.Type = userPair.Value.Type;
-            Navigation.Shell.Model.User = user;
+            ShellModel shellModel = Navigation.Shell.Model;
+
+            shellModel.IsRegistered = true;
+            shellModel.FullName = "     " + userPair.Value.FirstName + " " + userPair.Value.LastName;
+            shellModel.UserName = userPair.Value.UserName;
+            shellModel.Type = userPair.Value.Type;
+            shellModel.User = user;
+            shellModel.IsOrderer = user.Type == User.TYPE_ORDERER;
+            shellModel.IsDeliverer = user.Type == User.TYPE_DELIVERER;
             Navigation.Navigate(typeof(HomePage));
 
         }

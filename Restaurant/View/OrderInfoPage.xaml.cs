@@ -57,5 +57,21 @@ namespace Restaurant.View
         {
             ViewModel.Order.Status = Order.Canceled;
         }
+
+        private void CheckBoxPickedUp_OnChecked(object sender, RoutedEventArgs e)
+        {
+            bool checkedVal = (bool)((sender as CheckBox).IsChecked);
+            OrderMealOption elem = (OrderMealOption)(sender as CheckBox).DataContext;
+            if (elem is null) return;
+            elem.PickedUp = checkedVal;
+
+        }
+
+        private void ListViewMealsOptions_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            OrderMealOption selectedMealOption = e.ClickedItem as OrderMealOption;
+            selectedMealOption.PickedUp = !selectedMealOption.PickedUp;
+
+        }
     }
 }

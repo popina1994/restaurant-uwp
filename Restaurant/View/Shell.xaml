@@ -33,11 +33,18 @@
                          Margin="5" FontSize="18"/>
                         <TextBlock Text="  Почетна" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" x:Name="SideDrawerItemCart" IsHitTestVisible="False"
-                                Visibility="{x:Bind Model.IsRegistered, Mode=OneWay}" >
+                                Visibility="{x:Bind Model.IsOrderer, Mode=OneWay}" >
                         <TextBlock x:Name="TextBlockBasket" FontFamily="Segoe MDL2 Assets   " Text="&#xE7BF;"
-                         Margin="5" FontSize="18"/>
+                                   Margin="5" FontSize="18"/>
                         <TextBlock Text="  Корпа" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" x:Name="SideDrawerItemMap" IsHitTestVisible="False"
+                                Visibility="{x:Bind Model.IsDeliverer, Mode=OneWay}" >
+                        <TextBlock x:Name="TextBlockMap" FontFamily="Segoe MDL2 Assets   " Text="&#xE707;"
+                                   Margin="5" FontSize="18"/>
+                        <TextBlock Text="  Мапа" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListView>
                 

@@ -196,5 +196,43 @@ namespace Restaurant
                 Navigation.Navigate(typeof(OrderInfoPage), orderInfoParams);
             }
         }
+
+        private void ListViewOrders_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var clickedElement = ((FrameworkElement)e.OriginalSource).DataContext;
+            if (clickedElement is Order)
+            {
+                Order order = (Order) clickedElement;
+                ViewModel.SelectedOrder = order;
+
+                ListView listView = (ListView)sender;
+                MenuFlyoutOrder.ShowAt(listView, e.GetPosition(listView));
+
+            }
+            
+        }
+
+        private void MenuFlyoutItemG_OnClick(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem item = (MenuFlyoutItem) sender;
+            switch (item.Name)
+            {
+                case "MenuFlyoutItemG1":
+                    ViewModel.SelectedOrder.Group = 0;
+                    break;
+                case "MenuFlyoutItemG2":
+                    ViewModel.SelectedOrder.Group = 1;
+                    break;
+                case "MenuFlyoutItemG3":
+                    ViewModel.SelectedOrder.Group = 2;
+                    break;
+                case "MenuFlyoutItemG4":
+                    ViewModel.SelectedOrder.Group = 3;
+                    break;
+                case "MenuFlyoutItemG5":
+                    ViewModel.SelectedOrder.Group = 4;
+                    break;
+            }
+        }
     }
 }

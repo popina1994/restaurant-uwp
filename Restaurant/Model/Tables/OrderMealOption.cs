@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurant.Model.Tables
 {
-    public class OrderMealOption
+    public class OrderMealOption : INotifyPropertyChanged
     {
         private int id;
         private static int ID_ORDER_MEAL_OPTION  = 0;
@@ -21,6 +23,14 @@ namespace Restaurant.Model.Tables
             this.amount = amount;
             this.pickedUp = pickedUp;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
         public int Id
         {
@@ -43,7 +53,7 @@ namespace Restaurant.Model.Tables
         public bool PickedUp
         {
             get => pickedUp;
-            set => pickedUp = value;
+            set { pickedUp = value; this.OnPropertyChanged();}
         }
     }
 }

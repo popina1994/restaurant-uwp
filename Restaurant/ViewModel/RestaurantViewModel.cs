@@ -16,6 +16,7 @@ namespace Restaurant.ViewModel
         private ObservableCollection<Meal> meals;
         private ObservableCollection<Order> orders;
         private string selectedPivot;
+        private Order selectedOrder;
 
         private bool isSearchRestaurantShown = false;
 
@@ -32,7 +33,11 @@ namespace Restaurant.ViewModel
             set => restaurants = value;
         }
 
-
+        public Order SelectedOrder
+        {
+            get => selectedOrder;
+            set => selectedOrder = value;
+        }
 
         public RestaurantViewModel(ObservableCollection<RestaurantSpec> restaurants, ObservableCollection<Meal> meals, ObservableCollection<Order> orders)
         {
