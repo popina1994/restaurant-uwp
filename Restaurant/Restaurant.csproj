@@ -52,6 +52,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
@@ -75,7 +76,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -176,6 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Icons\Button\Order.png" />
+    <Content Include="Assets\Icons\Pin\Blue.png" />
+    <Content Include="Assets\Icons\Pin\Gray.png" />
+    <Content Include="Assets\Icons\Pin\Green.png" />
+    <Content Include="Assets\Icons\Pin\Red.png" />
+    <Content Include="Assets\Icons\Pin\Yellow.png" />
     <Content Include="Assets\Images\Meals\Bean.jpg" />
     <Content Include="Assets\Images\Meals\Meat.jpg" />
     <Content Include="Assets\Images\Restaurant\1.jpg" />
@@ -279,14 +285,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
-      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.14393.0%29</Name>
-    </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
-      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.16299.0%29</Name>
+      <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

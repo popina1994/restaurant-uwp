@@ -33,6 +33,11 @@ namespace Restaurant.Model.Tables
 
         };
 
+        private static readonly string[] GROUPS_COLOURS_STR =
+        {
+            "Green", "Yellow", "Blue", "Red", "Gray"
+        };
+
 
         private int group;
         private static string DELIVERED = "ИСПОРУЧЕНО";
@@ -68,6 +73,8 @@ namespace Restaurant.Model.Tables
             get => orderMealOptions;
             set => orderMealOptions = value;
         }
+
+        public static string[] GroupsColoursStr => GROUPS_COLOURS_STR;
 
         public int Amount
         {

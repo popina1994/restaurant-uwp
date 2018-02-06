@@ -145,7 +145,7 @@ namespace Restaurant.Model
             restaurantTableDefault = default(KeyValuePair<int, RestaurantSpec>);
             string RESTAURANT_PATH = "/Assets/Images/Restaurant/";
             Geopoint geopintKaraburma = new Geopoint(new BasicGeoposition() { Latitude = 44.8173, Longitude = 20.5096 });
-
+            Geopoint geopintKaraburma2 = new Geopoint(new BasicGeoposition() { Latitude = 44.82, Longitude = 20.5094 });
             LinkedList<string> restaurant1ImagePath = new LinkedList<string>();
             restaurant1ImagePath.AddLast(RESTAURANT_PATH + "1.jpg");
             restaurant1ImagePath.AddLast(RESTAURANT_PATH + "2.jpg");
@@ -156,7 +156,7 @@ namespace Restaurant.Model
             restaurant2ImagePath.AddLast(RESTAURANT_PATH + "3.jpg");
             restaurant2ImagePath.AddLast(RESTAURANT_PATH + "4.jpg");
             RestaurantSpec restaurant2 = new RestaurantSpec("Лола", "Мије Ковачевића 8.б", 4, restaurant2ImagePath, 
-                                        "мексичка", "кида", false, false, true, true, geopintKaraburma, "k2@k2.com", "011-000-001");
+                                        "мексичка", "кида", false, false, true, true, geopintKaraburma2, "k2@k2.com", "011-000-001");
 
             restaurantTable = new Dictionary<int, RestaurantSpec>{{restaurant1.Id, restaurant1}, {restaurant2.Id, restaurant2}};
         }
