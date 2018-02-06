@@ -17,6 +17,21 @@ namespace Restaurant.ViewModel
             set => order = value;
         }
 
+        private bool isOrderer;
+        private bool isDeliverer;
+
+        public bool IsOrderer
+        {
+            get => isOrderer;
+            set => isOrderer = value;
+        }
+
+        public bool IsDeliverer
+        {
+            get => isDeliverer;
+            set => isDeliverer = value;
+        }
+
         public OrderViewModel()
         {
         }

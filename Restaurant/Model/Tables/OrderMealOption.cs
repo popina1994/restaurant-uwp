@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Restaurant.Services;
 
 namespace Restaurant.Model.Tables
 {
@@ -15,6 +16,8 @@ namespace Restaurant.Model.Tables
         private Meal meal;
         private int amount;
         private bool pickedUp;
+        private bool isOrderer;
+        private bool isDeliverer;
 
         public OrderMealOption(Meal meal, int amount, bool pickedUp)
         {
@@ -22,6 +25,19 @@ namespace Restaurant.Model.Tables
             this.meal = meal;
             this.amount = amount;
             this.pickedUp = pickedUp;
+        }
+
+
+        public bool IsOrderer
+        {
+            get => Navigation.Shell.Model.IsOrderer;
+            set => isOrderer = value;
+        }
+
+        public bool IsDeliverer
+        {
+            get => Navigation.Shell.Model.IsDeliverer;
+            set => isDeliverer = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

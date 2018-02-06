@@ -19,6 +19,7 @@ using Restaurant.Model;
 using Restaurant.Model.Tables;
 using Restaurant.ViewModel;
 using Restaurant.Services;
+using Windows.UI.Xaml.Controls.Maps;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -82,6 +83,16 @@ namespace Restaurant.View
                     if (ViewModel.CanAddComments) break;
                 }
             }
+
+            Dictionary<int, Meal> meals = new Dictionary<int, Meal>();
+            foreach (var itMeal in DatabaseModel.MealsTable)
+            {
+                if (itMeal.Value.Restaurant.Id == ViewModel.Restaurant.Id)
+                {
+                    meals.Add(itMeal.Value.Id, itMeal.Value);
+                }
+            }
+            ViewModel.Meals = meals;
         }
 
         private void ButtonRightImage_OnClick(object sender, RoutedEventArgs e)
@@ -100,8 +111,18 @@ namespace Restaurant.View
 
         private void MapControlRestaurant_OnLoaded(object sender, RoutedEventArgs e)
         {
+            var pinIcon = new MapIcon
+            {
+                Location = ViewModel.Restaurant.LocationGeopoint,
+                NormalizedAnchorPoint = new Point(0.5, 1.0),
+                ZIndex = 0,
+                Title = ViewModel.Restaurant.Name,
+                CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
+            };
+            MapControlRestaurant.MapElements.Add(pinIcon);
+
             MapControlRestaurant.Center = ViewModel.Restaurant.LocationGeopoint;
-            MapControlRestaurant.ZoomLevel = 12;
+            MapControlRestaurant.ZoomLevel = 14;
         }
 
         private void calculateRestaurantRating(RestaurantSpec restaurantSpec)
@@ -134,6 +155,32 @@ namespace Restaurant.View
             ViewModel.CommentRestaurants.Add(commentRestaurant);
             DatabaseModel.CommentRestaurantsTable.Add(commentRestaurant.Id, commentRestaurant);
             calculateRestaurantRating(ViewModel.Restaurant);
+        }
+
+        private void ListViewMeals_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+
+                Meal selectedElement = e.AddedItems[0] as Meal;
+                MealInfoParams mealInfoParams = new MealInfoParams(selectedElement);
+                Navigation.Navigate(typeof(MealInfoPage), mealInfoParams);
+            }
+        }
+
+        private void ButtonIncAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)e.OriginalSource;
+            Meal meal = (Meal)button.DataContext;
+            meal.Amount++;
+        }
+
+        private void ButtonDecAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            Button button = (Button)e.OriginalSource;
+            Meal meal = (Meal)button.DataContext;
+            meal.Amount--;
         }
     }
 }

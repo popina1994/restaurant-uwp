@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Restaurant.Services;
 
 namespace Restaurant.Model.Tables
 {
@@ -20,6 +21,7 @@ namespace Restaurant.Model.Tables
         private LinkedList<string> imagePathLinkedList;
         private double rating;
         private int amount;
+        private bool isOrderer;
 
         private RestaurantSpec restaurant;
 
@@ -29,6 +31,13 @@ namespace Restaurant.Model.Tables
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public bool IsOrderer
+        {
+            get => Navigation.Shell.Model.IsOrderer;
+            set => isOrderer = value;
+        }
+
 
         public int Id
         {

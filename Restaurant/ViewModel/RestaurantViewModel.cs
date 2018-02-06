@@ -17,6 +17,9 @@ namespace Restaurant.ViewModel
         private ObservableCollection<Order> orders;
         private string selectedPivot;
         private Order selectedOrder;
+        private bool isOrderer;
+        private bool isDeliverer;
+        private bool isUnregistered;
 
         private bool isSearchRestaurantShown = false;
 
@@ -74,6 +77,24 @@ namespace Restaurant.ViewModel
         {
             get => orders;
             set => orders = value;
+        }
+
+        public bool IsOrderer
+        {
+            get => isOrderer;
+            set => isOrderer = value;
+        }
+
+        public bool IsDeliverer
+        {
+            get => isDeliverer;
+            set => isDeliverer = value;
+        }
+
+        public bool IsUnregistered
+        {
+            get => isUnregistered;
+            set => isUnregistered = value;
         }
     }
 }

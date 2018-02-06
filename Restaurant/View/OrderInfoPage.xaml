@@ -4,12 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Restaurant.View"
     xmlns:viewModel="using:Restaurant.ViewModel"
+    xmlns:logic="using:Restaurant.Logic"
     xmlns:tables ="using:Restaurant.Model.Tables"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
+        <logic:WorkingHoursConverter x:Key="WorkingHoursConverter"/>
+        <logic:StatusToVisibility x:Key="StatusToVisibility"/>
+    </Page.Resources>
     <Grid >
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -26,7 +37,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Rectangle Grid.Column="0" Height="250" Width="250" VerticalAlignment="Center">
+                        <Rectangle Grid.Column="0" Height="250" Width="250" VerticalAlignment="Center" >
                             <Rectangle.Fill>
                                 <ImageBrush ImageSource="{x:Bind Meal.ImagePathLinkedList.First.Value, Mode=OneWay}"/>
                             </Rectangle.Fill>
@@ -56,10 +67,10 @@
                                     <TextBlock Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount" 
                                                RelativePanel.RightOf="TextBlockAmountLabel" FontSize="30"/>
                                 </RelativePanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Visibility="{x:Bind IsDeliverer}">
                                     <TextBlock Text="Доставио " FontSize="20"></TextBlock>
                                     <CheckBox x:Name="CheckBoxPickedUp" IsChecked="{x:Bind PickedUp, Mode=OneWay}"
-                                              Checked="CheckBoxPickedUp_OnChecked"></CheckBox>
+                                              Checked="CheckBoxPickedUp_OnChecked" ></CheckBox>
                                 </StackPanel>
                             </StackPanel>
 
@@ -117,13 +128,14 @@
                     <TextBlock Text="Укупно за плаћање:" Grid.Column="0" ></TextBlock>
                     <TextBlock Text="{x:Bind ViewModel.Order.Amount}" Grid.Column="1" ></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Visibility="{x:Bind ViewModel.Order.Status, Converter={StaticResource StatusToVisibility}, Mode=OneWay}">
                     <Button Content="Испоручи" x:Name="ButtonDeliver" Click="ButtonDeliver_OnClick" ></Button>
-                    <Button Content="Oткажи" Margin="10, 0, 0, 0" x:Name="ButtonCancel" Click="ButtonCancel_OnClick" ></Button>
+                    <Button Content="Oткажи" Margin="10, 0, 0, 0" x:Name="ButtonCancel" Click="ButtonCancel_OnClick" 
+                        ></Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="Наручено:" ></TextBlock>
-                    <TextBlock Text="{x:Bind ViewModel.Order.DateTimeOrdered}"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Order.DateTimeOrdered, Converter={StaticResource DateConverter}}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
                     <TextBlock Text="Статус: "></TextBlock>
@@ -131,7 +143,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="4">
                     <TextBlock Text="Испоручено: "></TextBlock>
-                    <TextBlock Text="{x:Bind ViewModel.Order.DateTimeDelivered}"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Order.DateTimeDelivered, Mode=OneWay,Converter={StaticResource DateConverter}}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
                     <TextBlock Text="Плаћено са"></TextBlock>

@@ -5,10 +5,19 @@
     xmlns:local="using:Restaurant.View"
     xmlns:viewModel="using:Restaurant.ViewModel"
     xmlns:tables ="using:Restaurant.Model.Tables"
+    xmlns:logic="using:Restaurant.Logic"
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
+        <logic:WorkingHoursConverter x:Key="WorkingHoursConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -113,6 +122,137 @@
                         TickPlacement="Outside" 
                         Margin="50, 0, 0, 0" />
             </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="20"/>
+                        </Style>
+                        <Style TargetType="Button">
+                            <Setter Property="FontSize" Value="30"></Setter>
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Пон"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>    
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Уто"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.TueWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.TueWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Сре"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.WedWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.WedWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Чет"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.ThuWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.ThuWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Пет"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.FriWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.FriWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Суб"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.SatWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.SatWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Нед"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.SunWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.SunWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Време доставе" FontSize="30" Margin="25"/>
+                        <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.Restaurant.DeliveryTime, Converter={StaticResource WorkingHoursConverter}}" FontSize="35" Margin="25"/>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.Restaurant.Description}" FontSize="35" Margin="25"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
+                <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="20"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="30"></Setter>
+                </Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Примамо:"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Visa" Visibility="{x:Bind ViewModel.Restaurant.CanVisa}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Master card" Visibility="{x:Bind ViewModel.Restaurant.CanMasterCard}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="PayPal" Visibility="{x:Bind ViewModel.Restaurant.CanPayPal}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Кеш" Visibility="{x:Bind ViewModel.Restaurant.CanCash}"></TextBlock>
+            </StackPanel>
+            <ListView ItemsSource="{x:Bind ViewModel.Meals.Values, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
+                          Margin="20, 0, 0, 0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="DoubleLineDataTemplateOrders" x:DataType="tables:Meal">
+                    <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        
+                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
+                                    <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                                                    Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                    <TextBlock Text="{x:Bind Price}" FontSize="30"></TextBlock>
+                                </StackPanel>
+                                <RelativePanel HorizontalAlignment="Center" Visibility="{x:Bind IsOrderer}">
+                                    <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
+                                                    Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
+                                    <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
+                                                         RelativePanel.RightOf="ButtonDecAmount"/>
+                                    <Button Grid.Row="1" Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    RelativePanel.RightOf="TextBoxAmount" Width="50" Height="32" Background="ForestGreen"
+                                                        Click="ButtonIncAmount_OnClick"/>
+                                </RelativePanel>
+                            </StackPanel>
+
+                        </Grid>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 

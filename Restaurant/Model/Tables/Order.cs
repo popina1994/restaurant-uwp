@@ -20,8 +20,8 @@ namespace Restaurant.Model.Tables
         private string status;
         private string paidBy;
 
-        private string dateTimeOrdered;
-        private string dateTimeDelivered;
+        private DateTime dateTimeOrdered;
+        private DateTime dateTimeDelivered;
 
         private static readonly SolidColorBrush[] GROUPS_COLOURS =
         {
@@ -130,16 +130,20 @@ namespace Restaurant.Model.Tables
 
         public static string NotDelivered => NOT_DELIVERED;
 
-        public string DateTimeOrdered
+        public DateTime DateTimeOrdered
         {
             get => dateTimeOrdered;
             set => dateTimeOrdered = value;
         }
 
-        public string DateTimeDelivered
+        public DateTime DateTimeDelivered
         {
             get => dateTimeDelivered;
-            set => dateTimeDelivered = value;
+            set
+            {
+                dateTimeDelivered = value;
+                this.OnPropertyChanged();
+            }
         }
 
 
@@ -152,7 +156,7 @@ namespace Restaurant.Model.Tables
         }
 
 
-        public Order(User user, Dictionary<int, OrderMealOption> orderMealOptions, int amount, string status, string paidBy, string dateTimeOrdered, string dateTimeDelivered, int group)
+        public Order(User user, Dictionary<int, OrderMealOption> orderMealOptions, int amount, string status, string paidBy, DateTime dateTimeOrdered, DateTime dateTimeDelivered, int group)
         {
             this.id = ID_ORDER++;
             this.user = user;

@@ -18,6 +18,7 @@
         <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
         <logic:TypeStringConverter x:Key="TypeStringConverter"/>
         <logic:GroupToColourConverter x:Key="GroupToColourConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
     </Page.Resources>
 
     <Grid x:Name="RootGrid" Margin="12,0,12,12">
@@ -100,8 +101,8 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
                                 <TextBlock Text="Max оцена"  Margin="0, 14, 0, 0"></TextBlock>
                                 <Slider Name="SliderMaxRating" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
-                                        Value="5"
-                        ></Slider>
+                                            Value="5"
+                            ></Slider>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0, 0, 0,10">
                                 <TextBlock Text="Радно време"  ></TextBlock>
@@ -116,52 +117,53 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxTue" Content="УТО" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="8"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxWed" Content="СРЕ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="9"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxThu" Content="ЧЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerThuStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerThuEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="10"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxFri" Content="ПЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="11"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSat" Content="СУБ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatStart" />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatEnd" />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="12"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSun" Content="НЕД" FlowDirection="LeftToRight" />
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerSunStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSunEnd" 
+                                                />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="13"  Margin="0,10,0,0" HorizontalAlignment="Center">
-                                <TextBlock Text="Време доставе" HorizontalAlignment="Center"/>
-                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0"  />
+                                <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
+                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0" x:Name="TimePickerDeliveryTime"  Time="02:00"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="14" HorizontalAlignment="Center">
                                 <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxDescription" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxDescriptionRestaurant" Width="183" Margin="10, 10, 0, 0"></TextBox>
                             </StackPanel>
 
                             <StackPanel Grid.Row="15">
@@ -224,7 +226,7 @@
 
             </PivotItem>
 
-            <PivotItem Header="Јела" x:Name="PivotItemMeal">
+            <PivotItem Header="Јела" x:Name="PivotItemMeal" Visibility="{x:Bind ViewModel.IsDeliverer, Converter={StaticResource NegBoolVis}}">
                 <StackPanel Orientation="Horizontal" >
                     <ScrollViewer>
                         <Grid Margin="0, 0, 0, 0">
@@ -269,24 +271,38 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
                                 <TextBlock Text="Max цена"  Margin="0, 14, 0, 0"></TextBlock>
                                 <Slider Name="SliderMaxPrice" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="1000" StepFrequency="0.1"
+                                        Value="1000"
                             ></Slider>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
-                                <TextBlock Text="Категорија"  Margin="-9, 14, 0, 0"></TextBlock>
-                                <ComboBox Name="ComboBoxCategory" Width="150" 
-                                          SelectedIndex="0"  Margin="10, 10, 0, 0">
-                                    <x:String>Доручак</x:String>
-                                    <x:String>Ручак</x:String>
-                                    <x:String>Вечера</x:String>
-                                </ComboBox>
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="Категорија:" HorizontalAlignment="Center" Margin="-40, 0, 0,0"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <CheckBox x:Name="CheckboxBreakfeast" Content="Доручак" IsChecked="False"/>
+                                    <CheckBox x:Name="CheckboxLunch" Content="Ручак" IsChecked="False"></CheckBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <CheckBox x:Name="CheckboxDinner" Content="Вечера" IsChecked="False" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                                <TextBlock Text="Min оцена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMinRatingMeal" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                ></Slider>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center">
+                                <TextBlock Text="Max оцена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMaxRatingMeal" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                        Value="5"
+                                ></Slider>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center">
                                 <TextBlock Text="Састојци"  Margin="0, 14, 0, 0"></TextBlock>
                                 <TextBox Name="TextBoxIngridientsMeal" Width="150" Margin="10, 10, 0, 0"></TextBox>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
                                 <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
                                 <TextBox Name="TextBoxDescriptionMeal" Width="150" Margin="35, 10, 0, 0"></TextBox>
                             </StackPanel>
@@ -331,7 +347,7 @@
                                                 <TextBlock Text="Цена: " FontSize="30"></TextBlock>
                                                 <TextBlock Text="{x:Bind Price}" FontSize="30"></TextBlock>
                                             </StackPanel>
-                                            <RelativePanel>
+                                            <RelativePanel Visibility="{x:Bind IsOrderer}">
                                                 <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
                                                     Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
                                                 <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
@@ -345,15 +361,15 @@
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
+                        </ListView.ItemTemplate>    
                     </ListView>
                 </StackPanel>
             </PivotItem>
 
-            <PivotItem Header="Поруџбине" Name="PivotOrder">
+            <PivotItem Header="Поруџбине" Name="PivotItemOrder" Visibility="{x:Bind ViewModel.IsUnregistered, Converter={StaticResource NegBoolVis}, Mode=OneWay}">
                 <StackPanel Orientation="Horizontal" >
                     <ScrollViewer>
-                        <Grid Margin="0, 0, 0, 0" VerticalAlignment="Center">
+                        <Grid Margin="0,40, 0, 0" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -374,26 +390,37 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>  
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
                                 <TextBlock Text="Од" Margin="0, 14, 0, 0"></TextBlock>
-                                <DatePicker Name="DatePickerFrom" Width="183" Margin="0, 10, 0, 0" Language="fr-FR"></DatePicker>
+                                <DatePicker Name="DatePickerFrom" Width="183" Margin="0, 10, 0, 0"   MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
                                 <TextBlock Text="До"  Margin="-1, 14, 0, 0"></TextBlock>
-                                <DatePicker Name="DatePickerTo" Width="183" Margin="0, 10, 0, 0"></DatePicker>
+                                <DatePicker Name="DatePickerTo" Width="183" Margin="0, 10, 0, 0"  MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
                                 <TextBlock Text="Min цена"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxMinPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxMinPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="1"></TextBox>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
                                 <TextBlock Text="Max цена"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxMaxPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxMaxPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="10000"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                                <TextBlock Text="Удаљеност до"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxMaxDist" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="1000"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                                <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
+                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0" x:Name="TimePickerDeliveryTimeOrder"  Time="02:00"/>
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>
@@ -415,8 +442,8 @@
                             <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Order">
                                 <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal" Background="{x:Bind Group, Converter={StaticResource GroupToColourConverter}, Mode=OneWay}">
-                                    <TextBlock Text="{x:Bind DateTimeOrdered}" FontSize="30"></TextBlock>
-                                    <TextBlock Margin="390, 0, 0, 0" Text="{x:Bind DateTimeDelivered}" FontSize="30"></TextBlock>
+                                        <TextBlock Text="{x:Bind DateTimeOrdered, Converter={StaticResource DateConverter}}" FontSize="30"></TextBlock>
+                                        <TextBlock Margin="390, 0, 0, 0" Text="{x:Bind DateTimeDelivered, Converter={StaticResource DateConverter}}" FontSize="30"></TextBlock>
                                 </StackPanel>
                                 <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
@@ -426,7 +453,7 @@
                                     </Grid.ColumnDefinitions>
                                     
                                     <ListView Grid.Column="0" ItemsSource="{x:Bind OrderMealOptions.Values, Mode=OneWay}" Name="ListViewMealsOptions"
-                                              Width="700">
+                                              Width="700" SelectionChanged="ListViewMealsOptions_OnSelectionChanged">
                                         <ListView.ItemTemplate>
                                             <DataTemplate x:Name="DataTemplatMeals" x:DataType="tables:OrderMealOption">
                                                 <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
@@ -478,15 +505,15 @@
                                             <RowDefinition Height="*"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                            <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                            <TextBlock Text="Име: " FontSize="30"></TextBlock>
                                             <TextBlock Text="{x:Bind User.FirstName}" FontSize="30"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                            <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                            <TextBlock Text="Презиме: " FontSize="30"></TextBlock>
                                             <TextBlock Text="{x:Bind User.LastName}" FontSize="30"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                            <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                            <TextBlock Text="Адреса: " FontSize="30"></TextBlock>
                                             <TextBlock Text="{x:Bind User.Address}" FontSize="30"></TextBlock>
                                         </StackPanel>
                                     </Grid>

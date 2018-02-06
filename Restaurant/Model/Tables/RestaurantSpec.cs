@@ -27,6 +27,26 @@ namespace Restaurant.Model.Tables
         private Geopoint locationGeopoint;
         private string phone;
         private string email;
+        private TimeSpan monWorkingHoursStart;
+        private TimeSpan tueWorkingHoursStart;
+        private TimeSpan wedWorkingHoursStart;
+        private TimeSpan thuWorkingHoursStart;
+        private TimeSpan friWorkingHoursStart;
+        private TimeSpan satWorkingHoursStart;
+        private TimeSpan sunWorkingHoursStart;
+
+        private TimeSpan monWorkingHoursEnd;
+        private TimeSpan tueWorkingHoursEnd;
+        private TimeSpan wedWorkingHoursEnd;
+        private TimeSpan thuWorkingHoursEnd;
+        private TimeSpan friWorkingHoursEnd;
+        private TimeSpan satWorkingHoursEnd;
+        private TimeSpan sunWorkingHoursEnd;
+
+        private TimeSpan deliveryTime;
+
+
+        private DateTime time = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -83,7 +103,106 @@ namespace Restaurant.Model.Tables
             set => description = value;
         }
 
-        public RestaurantSpec(string name, string address, double rating, LinkedList<string> imagePathLinkedList, string kitchen, string description, bool canCash, bool canMasterCard, bool canPayPal, bool canVisa, Geopoint locationGeopoint, string email, string phone)
+        public DateTime Time
+        {
+            get => time;
+            set => time = value;
+        }
+
+        public TimeSpan MonWorkingHoursStart
+        {
+            get => monWorkingHoursStart;
+            set => monWorkingHoursStart = value;
+        }
+
+        public TimeSpan TueWorkingHoursStart
+        {
+            get => tueWorkingHoursStart;
+            set => tueWorkingHoursStart = value;
+        }
+
+        public TimeSpan WedWorkingHoursStart
+        {
+            get => wedWorkingHoursStart;
+            set => wedWorkingHoursStart = value;
+        }
+
+        public TimeSpan ThuWorkingHoursStart
+        {
+            get => thuWorkingHoursStart;
+            set => thuWorkingHoursStart = value;
+        }
+
+        public TimeSpan FriWorkingHoursStart
+        {
+            get => friWorkingHoursStart;
+            set => friWorkingHoursStart = value;
+        }
+
+        public TimeSpan SatWorkingHoursStart
+        {
+            get => satWorkingHoursStart;
+            set => satWorkingHoursStart = value;
+        }
+
+        public TimeSpan SunWorkingHoursStart
+        {
+            get => sunWorkingHoursStart;
+            set => sunWorkingHoursStart = value;
+        }
+
+        public TimeSpan MonWorkingHoursEnd
+        {
+            get => monWorkingHoursEnd;
+            set => monWorkingHoursEnd = value;
+        }
+
+        public TimeSpan TueWorkingHoursEnd
+        {
+            get => tueWorkingHoursEnd;
+            set => tueWorkingHoursEnd = value;
+        }
+
+        public TimeSpan WedWorkingHoursEnd
+        {
+            get => wedWorkingHoursEnd;
+            set => wedWorkingHoursEnd = value;
+        }
+
+        public TimeSpan ThuWorkingHoursEnd
+        {
+            get => thuWorkingHoursEnd;
+            set => thuWorkingHoursEnd = value;
+        }
+
+        public TimeSpan FriWorkingHoursEnd
+        {
+            get => friWorkingHoursEnd;
+            set => friWorkingHoursEnd = value;
+        }
+
+        public TimeSpan SatWorkingHoursEnd
+        {
+            get => satWorkingHoursEnd;
+            set => satWorkingHoursEnd = value;
+        }
+
+        public TimeSpan SunWorkingHoursEnd
+        {
+            get => sunWorkingHoursEnd;
+            set => sunWorkingHoursEnd = value;
+        }
+
+
+        public TimeSpan DeliveryTime
+        {
+            get => deliveryTime;
+            set => deliveryTime = value;
+        }
+
+        public RestaurantSpec(string name, string address, double rating, LinkedList<string> imagePathLinkedList, string kitchen, string description, bool canCash, bool canMasterCard, bool canPayPal, bool canVisa, Geopoint locationGeopoint, string email, string phone, 
+                              TimeSpan monWorkingHoursStart, TimeSpan tueWorkingHoursStart, TimeSpan wedWorkingHoursStart, TimeSpan thuWorkingHoursStart, TimeSpan friWorkingHoursStart, TimeSpan satWorkingHoursStart, TimeSpan sunWorkingHoursStart,
+                                TimeSpan monWorkingHoursEnd, TimeSpan tueWorkingHoursEnd, TimeSpan wedWorkingHoursEnd, TimeSpan thuWorkingHoursEnd, TimeSpan friWorkingHoursEnd, TimeSpan satWorkingHoursEnd, TimeSpan sunWorkingHoursEnd, TimeSpan deliveryTime)
         {
             this.id = ID_RESTAURANT_GENERATED++;
             this.name = name;
@@ -99,6 +218,23 @@ namespace Restaurant.Model.Tables
             this.locationGeopoint = locationGeopoint;
             this.phone = phone;
             this.email = email;
+            this.monWorkingHoursStart = monWorkingHoursStart;
+            this.tueWorkingHoursStart = tueWorkingHoursStart;
+            this.wedWorkingHoursStart = wedWorkingHoursStart;
+            this.thuWorkingHoursStart = thuWorkingHoursStart;
+            this.friWorkingHoursStart = friWorkingHoursStart;
+            this.satWorkingHoursStart = satWorkingHoursStart;
+            this.sunWorkingHoursStart = sunWorkingHoursStart;
+
+            this.monWorkingHoursEnd = monWorkingHoursEnd;
+            this.tueWorkingHoursEnd = tueWorkingHoursEnd;
+            this.wedWorkingHoursEnd = wedWorkingHoursEnd;
+            this.thuWorkingHoursEnd = thuWorkingHoursEnd;
+            this.friWorkingHoursEnd = friWorkingHoursEnd;
+            this.satWorkingHoursEnd = satWorkingHoursEnd;
+            this.sunWorkingHoursEnd = sunWorkingHoursEnd;
+
+            this.deliveryTime = deliveryTime;
         }
 
         public bool CanVisa

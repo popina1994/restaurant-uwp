@@ -18,6 +18,7 @@ namespace Restaurant.ViewModel
         private bool canAddComments;
         private bool isOrder;
         private ObservableCollection<CommentRestaurant> commentRestaurants;
+        private Dictionary<int, Meal> meals;
 
         public bool CanAddComments
         {
@@ -29,6 +30,12 @@ namespace Restaurant.ViewModel
         {
             get => isOrder;
             set => isOrder = value;
+        }
+
+        public Dictionary<int, Meal> Meals
+        {
+            get => meals;
+            set => meals = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

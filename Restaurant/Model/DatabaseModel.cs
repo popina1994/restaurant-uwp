@@ -149,14 +149,26 @@ namespace Restaurant.Model
             LinkedList<string> restaurant1ImagePath = new LinkedList<string>();
             restaurant1ImagePath.AddLast(RESTAURANT_PATH + "1.jpg");
             restaurant1ImagePath.AddLast(RESTAURANT_PATH + "2.jpg");
-            RestaurantSpec restaurant1 = new RestaurantSpec("Карабурма", "Мије Ковачевића 7.б.", 5, restaurant1ImagePath, 
-                                        "тајландска", "Кида", true, true, false, false, geopintKaraburma, "k1@k1.com", "011-000-000");
+            TimeSpan timeStart = new TimeSpan(8, 0, 0);
+            TimeSpan timeStart2 = new TimeSpan(10, 0, 0);
+            TimeSpan timeEnd = new TimeSpan(20, 0, 0);
+            TimeSpan timeEnd2 = new TimeSpan(22, 0, 0);
+            TimeSpan deliveryTime1 = new TimeSpan(1, 0, 0);
+            TimeSpan deliveryTime2 = new TimeSpan(0, 45, 0);
+            TimeSpan notWorking = new TimeSpan(0, 0, 1);    
+            RestaurantSpec restaurant1 = new RestaurantSpec("Карабурма", "Мије Ковачевића 7.б.", 5,
+                restaurant1ImagePath,
+                "тајландска", "Кида", true, true, false, false, geopintKaraburma, "k1@k1.com", "011-000-000",
+                timeStart, timeStart, timeStart, timeStart, timeStart, timeStart, notWorking,
+                timeEnd, timeEnd, timeEnd, timeEnd, timeEnd, timeEnd, notWorking, deliveryTime1);
 
             LinkedList<string> restaurant2ImagePath = new LinkedList<string>();
             restaurant2ImagePath.AddLast(RESTAURANT_PATH + "3.jpg");
             restaurant2ImagePath.AddLast(RESTAURANT_PATH + "4.jpg");
             RestaurantSpec restaurant2 = new RestaurantSpec("Лола", "Мије Ковачевића 8.б", 4, restaurant2ImagePath, 
-                                        "мексичка", "кида", false, false, true, true, geopintKaraburma2, "k2@k2.com", "011-000-001");
+                                        "мексичка", "кида", false, false, true, true, geopintKaraburma2, "k2@k2.com", "011-000-001",
+                                        timeStart2, timeStart2, timeStart2, timeStart2, timeStart2, timeStart2, notWorking,
+                                        timeEnd2, timeEnd2, timeEnd2, timeEnd2, timeEnd2, timeEnd2, notWorking, deliveryTime2);
 
             restaurantTable = new Dictionary<int, RestaurantSpec>{{restaurant1.Id, restaurant1}, {restaurant2.Id, restaurant2}};
         }
@@ -223,12 +235,14 @@ namespace Restaurant.Model
         private static void initOrdersTable()
         {
             ordersDefault = default(KeyValuePair<int, Order>);
+            DateTime dateTime1 = new  DateTime(2017, 11, 11);
+            DateTime dateTime2 = new DateTime(2017, 11, 12);
             Order order1 = new Order(UserTable.First(x => x.Value.Id == 1).Value, new Dictionary<int, OrderMealOption>()
                 { {orderMeal1.Id, orderMeal1}, {orderMeal2.Id, orderMeal2}}, orderMeal1.Amount * orderMeal1.Meal.Price + orderMeal2.Amount * orderMeal2.Meal.Price, 
-                Order.NotDelivered, Order.PaidMaster, "11-11-2017", "", 0);
+                Order.NotDelivered, Order.PaidMaster, dateTime1, new DateTime(1, 1, 1), 0);
             Order order2 = new Order(UserTable.First(x => x.Value.Id == 1).Value, new Dictionary<int, OrderMealOption>()
                     { {orderMeal3.Id, orderMeal3}, {orderMeal4.Id, orderMeal4}}, orderMeal3.Amount * orderMeal3.Meal.Price + orderMeal4.Amount * orderMeal4.Meal.Price, 
-                Order.Delivered, Order.PaidVisa, "11-11-2017", "12-11-2017", 1);
+                Order.Delivered, Order.PaidVisa, dateTime1, dateTime2, 1);
             ordersTable = new Dictionary<int, Order>() { { order1.Id, order1 }, { order2.Id, order2 } };
         }
     

@@ -19,6 +19,7 @@ using Restaurant.Model;
 using Restaurant.Model.Tables;
 using Restaurant.Services;
 using Restaurant.ViewModel;
+using Windows.UI.Xaml.Controls.Maps;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -126,6 +127,33 @@ namespace Restaurant.View
             ViewModel.CommentMeals.Add(commentMeal);
             DatabaseModel.CommentMealTable.Add(commentMeal.Id, commentMeal);
             calculateMealRating(ViewModel.Meal);
+        }
+
+        private void MapControlRestaurant_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var pinIcon = new MapIcon
+            {
+                Location = ViewModel.Meal.Restaurant.LocationGeopoint,
+                NormalizedAnchorPoint = new Point(0.5, 1.0),
+                ZIndex = 0,
+                Title = ViewModel.Meal.Restaurant.Name,
+                CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
+            };
+            MapControlRestaurant.MapElements.Add(pinIcon);
+
+            MapControlRestaurant.Center = ViewModel.Meal.Restaurant.LocationGeopoint;
+            MapControlRestaurant.ZoomLevel = 14;
+        }
+
+        private void ButtonIncAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Meal.Amount++;
+        }
+
+        private void ButtonDecAmount_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            ViewModel.Meal.Amount--;
         }
     }
 }

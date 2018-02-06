@@ -91,14 +91,9 @@ namespace Restaurant.View
             }
 
 
-            var dateTimeToday = DateTime.Now;
-
-            var date = dateTimeToday.ToString("dd-MM-yyyy");
-            
-
             User user = DatabaseModel.UserTable.FirstOrDefault(x => x.Value.UserName == Navigation.Shell.Model.UserName).Value;
             
-            Order order = new Order(user, orderMealOptions, fulAmount, Order.NotDelivered, paidBy, date, "", 0);
+            Order order = new Order(user, orderMealOptions, fulAmount, Order.NotDelivered, paidBy, DateTime.Now, new DateTime(1, 1, 1), 0);
             DatabaseModel.OrdersTable.Add(order.Id, order);
         }
     }
