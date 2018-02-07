@@ -108,53 +108,53 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0, 0, 0,10">
                                 <TextBlock Text="Радно време"  ></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="5">
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="0, 0,0, 0">
                                 <CheckBox x:Name="CheckBoxMon" Content="ПОН" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerMonStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerMonEnd"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerMonStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerMonEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxTue" Content="УТО" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueEnd"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerTueStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerTueEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="8"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxWed" Content="СРЕ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedEnd"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerWedStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerWedEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="9"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxThu" Content="ЧЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerThuStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerThuEnd"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0" x:Name="TimePickerThuStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerThuEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="10"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxFri" Content="ПЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriEnd"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerFriStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerFriEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="11"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSat" Content="СУБ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatStart" />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatEnd" />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0" x:Name="TimePickerSatStart" />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0" x:Name="TimePickerSatEnd" />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="12"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSun" Content="НЕД" FlowDirection="LeftToRight" />
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerSunStart"/>
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSunEnd" 
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0"  x:Name="TimePickerSunStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-48, 0, 0, 0" x:Name="TimePickerSunEnd" 
                                                 />
                                 </StackPanel>
                             </StackPanel>
@@ -182,7 +182,7 @@
                         </Grid>
                         <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchRestaurantShow"
                                 Click="ButtonSearchRestaurantShow_OnClick" HorizontalAlignment="Center" Margin="0, 10, 0, 0"
-                            Width="150"></Button>
+                                Width="300"></Button>
 
                         <ListView ItemsSource="{x:Bind ViewModel.Restaurants, Mode=OneWay}" Name="ListViewRestaurant" SelectionChanged="ListViewRestaurant_OnSelectionChanged"
                           Margin="-10, 0, 0, 0">
@@ -310,9 +310,9 @@
 
 
                         </Grid>
-                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchMealShow"
+                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchMealShow" Margin="0, 10, 0, 0"
                                 Click="ButtonSearchMealShow_OnClick" HorizontalAlignment="Center"
-                            Width="150"></Button>
+                                Width="300"></Button>
     
                         <ListView ItemsSource="{x:Bind ViewModel.Meals, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
                           Margin="-10, 0, 0, 0">
@@ -394,11 +394,11 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
                                 <TextBlock Text="Од" Margin="0, 14, 0, 0"></TextBlock>
-                                <DatePicker Name="DatePickerFrom" Width="183" Margin="0, 10, 0, 0"   MonthFormat="{}{month.integer}" ></DatePicker>
+                                <DatePicker Name="DatePickerFrom" Width="150" Margin="0, 10, 0, 0"   MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                                <TextBlock Text="До"  Margin="-1, 14, 0, 0"></TextBlock>
-                                <DatePicker Name="DatePickerTo" Width="183" Margin="0, 10, 0, 0"  MonthFormat="{}{month.integer}" ></DatePicker>
+                                <TextBlock Text="До"  Margin="0, 14, 0, 0"></TextBlock>
+                                <DatePicker Name="DatePickerTo" Width="150" Margin="0, 10, 0, 0"  MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
                                 <TextBlock Text="Min цена"  Margin="0, 14, 0, 0"></TextBlock>
@@ -416,18 +416,18 @@
                                 <TextBox Name="TextBoxMaxDist" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
                                          Text="1000"></TextBox>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                            <StackPanel Orientation="Vertical" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
                                 <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
-                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0" x:Name="TimePickerDeliveryTimeOrder"  Time="02:00"/>
+                                <TimePicker ClockIdentifier="24HourClock" x:Name="TimePickerDeliveryTimeOrder"  Time="02:00"/>
                             </StackPanel>
                         </Grid>
 
-                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchOrderShow"
+                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchOrderShow" Margin="0, 10, 0, 0"
                                 Click="ButtonSearchOrderShow_OnClick" HorizontalAlignment="Center"
-                                Width="150"></Button>
+                                Width="300" ></Button>
 
                         <ListView ItemsSource="{x:Bind ViewModel.Orders, Mode=OneWay}" Name="ListViewOrders" SelectionChanged="ListViewOrders_OnSelectionChanged"
-                          Margin="-10, 0, 0, 0" RightTapped="ListViewOrders_OnRightTapped">
+                          Margin="-10, 10, 0, 0" RightTapped="ListViewOrders_OnRightTapped">
                             <ListView.Resources>
                                 <MenuFlyout x:Name="MenuFlyoutOrder">
                                     <MenuFlyout.Items>
@@ -442,7 +442,7 @@
                             </ListView.Resources>
                             <ListView.ItemTemplate>
                                 <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Order">
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0">
                                         <StackPanel Orientation="Horizontal" Background="{x:Bind Group, Converter={StaticResource GroupToColourConverter}, Mode=OneWay}">
                                             <TextBlock Text="{x:Bind DateTimeOrdered, Converter={StaticResource DateConverter}}" FontSize="23"></TextBlock>
                                             <TextBlock Margin="20, 0, 0, 0" Text="{x:Bind DateTimeDelivered, Converter={StaticResource DateConverter}}" FontSize="23"></TextBlock>

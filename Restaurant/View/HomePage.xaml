@@ -107,7 +107,7 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0, 0, 0,10">
                                 <TextBlock Text="Радно време"  ></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="5">
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="0, 0,20, 0">
                                 <CheckBox x:Name="CheckBoxMon" Content="ПОН" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
                                     <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerMonStart"/>
@@ -254,8 +254,8 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
-                                <TextBlock Text="Ресторан" Margin="0, 14, 0, 0"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="0, 0, 20, 0">
+                                <TextBlock Text="Ресторан" Margin="21, 14, 0, 0"></TextBlock>
                                 <TextBox Name="TextBoxRestaurantMeal" Width="183" Margin="0, 10, 0, 0"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
@@ -297,14 +297,14 @@
                                 ></Slider>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" >
                                 <TextBlock Text="Састојци"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxIngridientsMeal" Width="150" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxIngridientsMeal" Width="183" Margin="10, 10, 0, 0"></TextBox>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
                                 <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxDescriptionMeal" Width="150" Margin="35, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxDescriptionMeal" Width="183" Margin="35, 10, 0, 0"></TextBox>
                             </StackPanel>
 
                             
@@ -394,11 +394,11 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                                 <TextBlock Text="Од" Margin="0, 14, 0, 0"></TextBlock>
                                 <DatePicker Name="DatePickerFrom" Width="183" Margin="0, 10, 0, 0"   MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                                 <TextBlock Text="До"  Margin="-1, 14, 0, 0"></TextBlock>
                                 <DatePicker Name="DatePickerTo" Width="183" Margin="0, 10, 0, 0"  MonthFormat="{}{month.integer}" ></DatePicker>
                             </StackPanel>
@@ -413,12 +413,13 @@
                                 <TextBox Name="TextBoxMaxPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
                                          Text="10000"></TextBox>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}"
+                                        Margin="0, 0, 33, 0">
                                 <TextBlock Text="Удаљеност до"  Margin="0, 14, 0, 0"></TextBlock>
                                 <TextBox Name="TextBoxMaxDist" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
                                          Text="1000"></TextBox>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                            <StackPanel Orientation="Vertical" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
                                 <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
                                 <TimePicker ClockIdentifier="24HourClock" Margin="0, 10, 0, 0" x:Name="TimePickerDeliveryTimeOrder"  Time="02:00"/>
                             </StackPanel>
