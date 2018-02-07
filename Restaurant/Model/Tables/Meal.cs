@@ -106,7 +106,11 @@ namespace Restaurant.Model.Tables
         public double Rating
         {
             get => rating;
-            set => rating = value;
+            set
+            {
+                rating = value;
+                this.OnPropertyChanged();
+            }
         }
 
         public int Amount

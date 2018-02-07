@@ -313,7 +313,7 @@
                         <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchMealShow"
                                 Click="ButtonSearchMealShow_OnClick" HorizontalAlignment="Center"
                             Width="150"></Button>
-
+    
                         <ListView ItemsSource="{x:Bind ViewModel.Meals, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
                           Margin="-10, 0, 0, 0">
                             <ListView.ItemTemplate>
@@ -355,7 +355,7 @@
                     </StackPanel>
                 </PivotItem>
 
-                <PivotItem Header="Поруџбине" Name="PivotOrder">
+                <PivotItem Header="Поруџбине" Name="PivotItemOrder" Visibility="{x:Bind ViewModel.IsUnregistered, Converter={StaticResource NegBoolVis}, Mode=OneWay}">
                     <StackPanel Orientation="Vertical">
                         <Grid Margin="0,40, 0, 0"  Visibility="{x:Bind ViewModel.IsSearchOrderShown, Mode=OneWay}">
                             <Grid.RowDefinitions>

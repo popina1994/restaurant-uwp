@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="Restaurant.View.MealInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Restaurant.View"
+    xmlns:viewModel="using:Restaurant.ViewModel"
+    xmlns:tables ="using:Restaurant.Model.Tables"
+    xmlns:logic="using:Restaurant.Logic"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
+        <logic:WorkingHoursConverter x:Key="WorkingHoursConverter"/>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="{x:Bind ViewModel.Meal.Name}" FontSize="50"></TextBlock>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right">
+                    <TextBlock Margin="80, 0, 0,0" Text="{x:Bind ViewModel.Meal.Price}" FontSize="50"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <RelativePanel >
+                <Rectangle  Height="300" Width="350" VerticalAlignment="Center" x:Name="RectangleImage">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{x:Bind ViewModel.ImagePath, Mode=OneWay}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Button Grid.Row="1" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonLeftImage"
+                    HorizontalAlignment="Left" Opacity="1" Click="ButtonLeftImage_OnClick"
+                    Width="100"  RelativePanel.AlignVerticalCenterWithPanel="True"></Button>
+                <Button Grid.Row="1" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonRightImage"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    RelativePanel.AlignRightWith="RectangleImage"
+                    Click="ButtonRightImage_OnClick"
+                    Width="100" >
+                </Button>
+            </RelativePanel>
+            <Slider  Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                Value="{x:Bind ViewModel.Meal.Rating, Mode=OneWay}" >
+            </Slider>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind ViewModel.Meal.Restaurant.Name}" FontSize="25"></TextBlock>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind ViewModel.Meal.Restaurant.Address}" FontSize="25"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{x:Bind ViewModel.Meal.Restaurant.Kitchen}" FontSize="25"></TextBlock>
+                <TextBlock Margin="120, 0, 0, 0" Text="{x:Bind ViewModel.Meal.Category}" FontSize="25"></TextBlock>
+            </StackPanel>
+            <RelativePanel Margin="30" Visibility="{x:Bind ViewModel.IsOrder}" HorizontalAlignment="Center">
+                <Button Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
+                    Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
+                <TextBox InputScope="Number" Text="{x:Bind ViewModel.Meal.Amount, Mode=OneWay}" x:Name="TextBoxAmount"
+                     RelativePanel.RightOf="ButtonDecAmount"/>
+                <Button Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    RelativePanel.RightOf="TextBoxAmount" Width="50" Height="32" Background="ForestGreen"
+                    Click="ButtonIncAmount_OnClick"/>
+            </RelativePanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Садржи" ></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="{x:Bind ViewModel.Meal.Ingridients}" TextWrapping="Wrap" ></TextBlock>
+            </StackPanel>
+            <TextBlock Text="{x:Bind ViewModel.Meal.Description}" ></TextBlock>
+
+            <StackPanel  Grid.Row="0" Visibility="{x:Bind ViewModel.CanAddComments}">
+                <TextBox   IsSpellCheckEnabled="True" SelectionHighlightColor="Green" TextWrapping="Wrap"
+                       Height="60" Margin="10, 0, 10, 0" x:Name="TextBoxComment"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="10, -30, 0, 0" VerticalAlignment="Center" 
+                Visibility="{x:Bind ViewModel.CanAddComments}">
+                <Button Content="Додај коментар" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    x:Name="ButtonAddComment" Click="ButtonAddComment_OnClick"></Button>
+                <Slider Width="150" Minimum="1" Maximum="5" StepFrequency="1"
+                    Value="5" VerticalAlignment="Center" HorizontalAlignment="Right" TickFrequency="1"
+                    TickPlacement="Outside" 
+                    Margin="50, 30, 0, 0" Header="Оцени" x:Name="SliderRating"/>
+            </StackPanel>
+            <ListView ItemsSource="{x:Bind ViewModel.CommentMeals, Mode=OneWay}" Name="ListViewMeals" 
+                      Margin="10, 0, 0, 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="tables:CommentMeal">
+                        <Grid  AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{x:Bind Comment, Mode=OneWay}" TextWrapping="WrapWholeWords"></TextBlock>
+                            <RelativePanel Grid.Row ="1" >
+                                <TextBlock Text="{x:Bind User.UserName}"></TextBlock>
+                                <Slider Minimum="1" Maximum="5" StepFrequency="1" Width="150"
+                                        Value="{x:Bind Rating, Mode=OneWay}" TickFrequency="1"
+                                        TickPlacement="Outside" 
+                                        Margin="150, 0, 0, 0" />
+                            </RelativePanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

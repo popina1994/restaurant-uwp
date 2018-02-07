@@ -77,6 +77,26 @@ namespace Restaurant
             ViewModel.IsOrderer = shellModel.IsOrderer;
             ViewModel.IsUnregistered = !shellModel.IsRegistered;
             FilterOrders();
+            if (ViewModel.IsDeliverer)
+            {
+                PivotGlobal.Items.Clear();
+                PivotGlobal.Items.Add(PivotItemOrder);
+                PivotGlobal.Items.Add(PivotItemRestaurant);
+            }
+            else if (ViewModel.IsOrderer)
+            {
+                PivotGlobal.Items.Clear();
+                PivotGlobal.Items.Add(PivotItemMeal);
+                PivotGlobal.Items.Add(PivotItemRestaurant);
+                PivotGlobal.Items.Add(PivotItemOrder);
+                }
+            else
+            {
+                PivotGlobal.Items.Clear();
+                PivotGlobal.Items.Add(PivotItemRestaurant);
+                PivotGlobal.Items.Add(PivotItemMeal);
+            }
+            
         }
 
         public RestaurantViewModel ViewModel

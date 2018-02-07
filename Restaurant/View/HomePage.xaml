@@ -425,12 +425,12 @@
                         </Grid>
                     </ScrollViewer>
                     <ListView ItemsSource="{x:Bind ViewModel.Orders, Mode=OneWay}" Name="ListViewOrders" SelectionChanged="ListViewOrders_OnSelectionChanged"
-                          Margin="20, 0, 0, 0" RightTapped="ListViewOrders_OnRightTapped">
+                              Margin="20, 0, 0, 0" RightTapped="ListViewOrders_OnRightTapped">
                         <ListView.Resources>
                             <MenuFlyout x:Name="MenuFlyoutOrder">
                                 <MenuFlyout.Items>
                                     <MenuFlyoutItem x:Name="MenuFlyoutItemG1"  Text= "Додај у 1" Background="Green"
-                                                    Click="MenuFlyoutItemG_OnClick"/>
+                                                        Click="MenuFlyoutItemG_OnClick"/>
                                     <MenuFlyoutItem x:Name="MenuFlyoutItemG2"  Foreground="Black" Text="Додај у 2" Background="Yellow" Click="MenuFlyoutItemG_OnClick"/>
                                     <MenuFlyoutItem x:Name="MenuFlyoutItemG3"  Text="Додај у 3" Background="Blue" Click="MenuFlyoutItemG_OnClick"/>
                                     <MenuFlyoutItem x:Name="MenuFlyoutItemG4"  Text="Додај у 4" Background="Red" Click="MenuFlyoutItemG_OnClick"/>
@@ -441,84 +441,84 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Order">
                                 <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal" Background="{x:Bind Group, Converter={StaticResource GroupToColourConverter}, Mode=OneWay}">
+                                    <StackPanel Orientation="Horizontal" Background="{x:Bind Group, Converter={StaticResource GroupToColourConverter}, Mode=OneWay}">
                                         <TextBlock Text="{x:Bind DateTimeOrdered, Converter={StaticResource DateConverter}}" FontSize="30"></TextBlock>
                                         <TextBlock Margin="390, 0, 0, 0" Text="{x:Bind DateTimeDelivered, Converter={StaticResource DateConverter}}" FontSize="30"></TextBlock>
-                                </StackPanel>
-                                <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <ListView Grid.Column="0" ItemsSource="{x:Bind OrderMealOptions.Values, Mode=OneWay}" Name="ListViewMealsOptions"
-                                              Width="700" SelectionChanged="ListViewMealsOptions_OnSelectionChanged">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate x:Name="DataTemplatMeals" x:DataType="tables:OrderMealOption">
-                                                <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
-                                                        <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{x:Bind Meal.ImagePathLinkedList.First.Value, Mode=OneWay}"/>
-                                                        </Rectangle.Fill>
-                                                    </Rectangle>
+                                    </StackPanel>
+                                    <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                                    <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                                        <ListView Grid.Column="0" ItemsSource="{x:Bind OrderMealOptions.Values, Mode=OneWay}" Name="ListViewMealsOptions"
+                                                  Width="700" SelectionChanged="ListViewMealsOptions_OnSelectionChanged">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:Name="DataTemplatMeals" x:DataType="tables:OrderMealOption">
+                                                    <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="Auto"/>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="Auto"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
-                                                            <TextBlock Text="{x:Bind Meal.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
-                                                            <TextBlock Text="{x:Bind Meal.Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="50"/>
-                                                            <TextBlock Text="{x:Bind Meal.Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="30"/>
-                                                        </StackPanel>
+                                                        <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
+                                                            <Rectangle.Fill>
+                                                                <ImageBrush ImageSource="{x:Bind Meal.ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                                            </Rectangle.Fill>
+                                                        </Rectangle>
 
-                                                        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
-                                                            <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
-                                                            Value="{x:Bind Meal.Rating, Mode=OneWay}" ></Slider>
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Text="Цена: " FontSize="30"></TextBlock>
-                                                                <TextBlock Text="{x:Bind Meal.Price}" FontSize="30"></TextBlock>
+                                                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                                                                <TextBlock Text="{x:Bind Meal.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
+                                                                <TextBlock Text="{x:Bind Meal.Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="50"/>
+                                                                <TextBlock Text="{x:Bind Meal.Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="30"/>
                                                             </StackPanel>
-                                                            <RelativePanel Grid.Column="2">
-                                                                <TextBlock Text="Број: " FontSize="30" x:Name="TextBlockNumber"></TextBlock>
-                                                                <TextBlock Text="{x:Bind Amount, Mode=OneWay}" RelativePanel.RightOf="TextBlockNumber" 
-                                                                           FontSize="30"/>
-                                                            </RelativePanel>
-                                                        </StackPanel>
+
+                                                            <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
+                                                                <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                                                                Value="{x:Bind Meal.Rating, Mode=OneWay}" ></Slider>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                                                    <TextBlock Text="{x:Bind Meal.Price}" FontSize="30"></TextBlock>
+                                                                </StackPanel>
+                                                                <RelativePanel Grid.Column="2">
+                                                                    <TextBlock Text="Број: " FontSize="30" x:Name="TextBlockNumber"></TextBlock>
+                                                                    <TextBlock Text="{x:Bind Amount, Mode=OneWay}" RelativePanel.RightOf="TextBlockNumber" 
+                                                                               FontSize="30"/>
+                                                                </RelativePanel>
+                                                            </StackPanel>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid> 
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                    <Grid Column="1" Margin="20, 0, 0, 0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                            <TextBlock Text="Име: " FontSize="30"></TextBlock>
-                                            <TextBlock Text="{x:Bind User.FirstName}" FontSize="30"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                            <TextBlock Text="Презиме: " FontSize="30"></TextBlock>
-                                            <TextBlock Text="{x:Bind User.LastName}" FontSize="30"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                            <TextBlock Text="Адреса: " FontSize="30"></TextBlock>
-                                            <TextBlock Text="{x:Bind User.Address}" FontSize="30"></TextBlock>
-                                        </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <Grid Column="1" Margin="20, 0, 0, 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                                <TextBlock Text="Име: " FontSize="30"></TextBlock>
+                                                <TextBlock Text="{x:Bind User.FirstName}" FontSize="30"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                <TextBlock Text="Презиме: " FontSize="30"></TextBlock>
+                                                <TextBlock Text="{x:Bind User.LastName}" FontSize="30"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                                <TextBlock Text="Адреса: " FontSize="30"></TextBlock>
+                                                <TextBlock Text="{x:Bind User.Address}" FontSize="30"></TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+
                                     </Grid>
-                                    
-                                </Grid>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

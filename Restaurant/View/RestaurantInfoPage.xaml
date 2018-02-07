@@ -39,20 +39,20 @@
                     <TextBlock Text="{x:Bind ViewModel.Restaurant.Name}" FontSize="30"></TextBlock>
                 </StackPanel>
                 <RelativePanel Grid.Row="1" Margin="20, 0, 0,0 ">
-                <Rectangle Grid.Row="1" Height="500" Width="600" VerticalAlignment="Center" x:Name="RectangleImage">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="{x:Bind ViewModel.ImagePath, Mode=OneWay}"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <Button Grid.Row="1" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonLeftImage"
+                    <Rectangle Grid.Row="1" Height="500" Width="600" VerticalAlignment="Center" x:Name="RectangleImage">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{x:Bind ViewModel.ImagePath, Mode=OneWay}"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Button Grid.Row="1" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonLeftImage"
                          HorizontalAlignment="Left" Opacity="1" Click="ButtonLeftImage_OnClick"
                         Width="100"  RelativePanel.AlignVerticalCenterWithPanel="True"></Button>
-                <Button Grid.Row="1" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonRightImage"
+                    <Button Grid.Row="1" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonRightImage"
                         RelativePanel.AlignVerticalCenterWithPanel="True"
                         RelativePanel.AlignRightWith="RectangleImage"
                         Click="ButtonRightImage_OnClick"
                 Width="100" >
-                </Button>
+                    </Button>
                 </RelativePanel>
 
             </Grid>
@@ -93,7 +93,7 @@
                                                 TickPlacement="Outside" 
                                                 Margin="242, 0, 0, 0" />
                                     </RelativePanel>
-                                    
+
 
 
                                 </Grid>
@@ -104,7 +104,7 @@
             </Grid>
         </Grid>
 
-        
+
         <StackPanel Orientation="Vertical" Grid.Column="1" Margin="20, 0, 0, 0">
             <TextBlock Text="{x:Bind ViewModel.Restaurant.Address}" FontSize="30" TextWrapping="Wrap"></TextBlock>
             <Maps:MapControl Grid.Column="1" x:Name="MapControlRestaurant" Loaded="MapControlRestaurant_OnLoaded"
@@ -140,7 +140,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="Пон"></TextBlock>
                         <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
-                        <TextBlock Text="-"></TextBlock>    
+                        <TextBlock Text="-"></TextBlock>
                         <TextBlock Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -190,15 +190,15 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <StackPanel.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="20"/>
-                </Style>
-                <Style TargetType="Button">
-                    <Setter Property="FontSize" Value="30"></Setter>
-                </Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="30"></Setter>
+                    </Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Примамо:"></TextBlock>
                 <TextBlock Margin="10, 0, 0, 0" Text="Visa" Visibility="{x:Bind ViewModel.Restaurant.CanVisa}"></TextBlock>
@@ -208,50 +208,50 @@
             </StackPanel>
             <ListView ItemsSource="{x:Bind ViewModel.Meals.Values, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
                           Margin="20, 0, 0, 0">
-            <ListView.ItemTemplate>
-                <DataTemplate x:Name="DoubleLineDataTemplateOrders" x:DataType="tables:Meal">
-                    <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        
-                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="DoubleLineDataTemplateOrders" x:DataType="tables:Meal">
+                        <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
+                            <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
+                                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
                                     <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
                                                     Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Text="Цена: " FontSize="30"></TextBlock>
-                                    <TextBlock Text="{x:Bind Price}" FontSize="30"></TextBlock>
-                                </StackPanel>
-                                <RelativePanel HorizontalAlignment="Center" Visibility="{x:Bind IsOrderer}">
-                                    <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="Цена: " FontSize="30"></TextBlock>
+                                        <TextBlock Text="{x:Bind Price}" FontSize="30"></TextBlock>
+                                    </StackPanel>
+                                    <RelativePanel HorizontalAlignment="Center" Visibility="{x:Bind IsOrderer}">
+                                        <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
                                                     Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
-                                    <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
+                                        <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
                                                          RelativePanel.RightOf="ButtonDecAmount"/>
-                                    <Button Grid.Row="1" Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        <Button Grid.Row="1" Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                     RelativePanel.RightOf="TextBoxAmount" Width="50" Height="32" Background="ForestGreen"
                                                         Click="ButtonIncAmount_OnClick"/>
-                                </RelativePanel>
-                            </StackPanel>
+                                    </RelativePanel>
+                                </StackPanel>
+
+                            </Grid>
 
                         </Grid>
-                        
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
     </Grid>

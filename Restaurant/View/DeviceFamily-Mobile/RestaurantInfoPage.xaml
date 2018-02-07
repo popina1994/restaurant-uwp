@@ -1,0 +1,198 @@
+﻿<Page
+    x:Class="Restaurant.View.RestaurantInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Restaurant.View"
+    xmlns:viewModel="using:Restaurant.ViewModel"
+    xmlns:tables ="using:Restaurant.Model.Tables"
+    xmlns:logic="using:Restaurant.Logic"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
+        <logic:WorkingHoursConverter x:Key="WorkingHoursConverter"/>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" >
+            <StackPanel HorizontalAlignment="Center" >
+                <TextBlock Text="{x:Bind ViewModel.Restaurant.Name}" FontSize="30"></TextBlock>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind ViewModel.Restaurant.Address}" FontSize="30" TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+            <RelativePanel  >
+                <Rectangle Height="300" Width="350" VerticalAlignment="Center" x:Name="RectangleImage">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{x:Bind ViewModel.ImagePath, Mode=OneWay}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Button Grid.Row="1" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonLeftImage"
+                    HorizontalAlignment="Left" Opacity="1" Click="ButtonLeftImage_OnClick"
+                    Width="100"  RelativePanel.AlignVerticalCenterWithPanel="True"></Button>
+                <Button Grid.Row="1" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonRightImage"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    RelativePanel.AlignRightWith="RectangleImage"
+                    Click="ButtonRightImage_OnClick"
+                    Width="100" >
+                </Button>
+            </RelativePanel>
+
+            <Maps:MapControl Grid.Column="1" x:Name="MapControlRestaurant" Loaded="MapControlRestaurant_OnLoaded"
+                         MapServiceToken="AqK9nK0h_LngGSC8pHPzBJvl62yf617zRytgimB3fyYqdJPljcB-EGm3llmUUrlI"
+                         Height="300" Margin="0, 20, 0, 0"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind ViewModel.Restaurant.Phone}" FontSize="25"></TextBlock>
+                <TextBlock Text="{x:Bind ViewModel.Restaurant.Email}" FontSize="25" Margin="10, 0, 0, 0"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Slider Width="200" Minimum="1" Maximum="5" StepFrequency="0.1"
+                    Value="{x:Bind ViewModel.Restaurant.Rating, Mode=OneWay}" TickFrequency="1"
+                    TickPlacement="Outside" 
+                    Margin="50, 0, 0, 0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="Пон"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.MonWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Уто"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.TueWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.TueWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Сре"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.WedWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.WedWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Чет"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.ThuWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.ThuWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Пет"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.FriWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.FriWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Суб"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.SatWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.SatWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Нед"></TextBlock>
+                        <TextBlock Margin="5, 0, 0,0" Text="{x:Bind ViewModel.Restaurant.SunWorkingHoursStart, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                        <TextBlock Text="-"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.Restaurant.SunWorkingHoursEnd, Converter={StaticResource WorkingHoursConverter}}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Време доставе" />
+                        <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.Restaurant.DeliveryTime, Converter={StaticResource WorkingHoursConverter}}" Margin="5, 0, 0, 0" />
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.Restaurant.Description}" />
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Примамо:"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Visa" Visibility="{x:Bind ViewModel.Restaurant.CanVisa}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Master card" Visibility="{x:Bind ViewModel.Restaurant.CanMasterCard}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="PayPal" Visibility="{x:Bind ViewModel.Restaurant.CanPayPal}"></TextBlock>
+                <TextBlock Margin="10, 0, 0, 0" Text="Кеш" Visibility="{x:Bind ViewModel.Restaurant.CanCash}"></TextBlock>
+            </StackPanel>
+            <ListView ItemsSource="{x:Bind ViewModel.Meals.Values, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
+                          Margin="0, 0, 0, 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="DoubleLineDataTemplate3" x:DataType="tables:Meal">
+                        <Grid Height="200" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="1" Height="150" Width="150" VerticalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                <TextBlock Grid.Row="1" Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                <TextBlock Grid.Row="2" Text="{x:Bind Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                <Slider Grid.Row="3" Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                                            Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                                    <TextBlock Text="Цена: " ></TextBlock>
+                                    <TextBlock Text="{x:Bind Price}" ></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel  Grid.Row="0" Visibility="{x:Bind ViewModel.CanAddComments}">
+                <TextBox   IsSpellCheckEnabled="True" SelectionHighlightColor="Green" TextWrapping="Wrap"
+                       Height="60" Margin="10, 0, 10, 0" x:Name="TextBoxComment"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="10, -30, 0, 0" VerticalAlignment="Center" 
+                Visibility="{x:Bind ViewModel.CanAddComments}">
+                <Button Content="Додај коментар" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    x:Name="ButtonAddComment" Click="ButtonAddComment_OnClick"></Button>
+                <Slider Width="150" Minimum="1" Maximum="5" StepFrequency="1"
+                    Value="5" VerticalAlignment="Center" HorizontalAlignment="Right" TickFrequency="1"
+                    TickPlacement="Outside" 
+                    Margin="50, 30, 0, 0" Header="Оцени" x:Name="SliderRating"/>
+            </StackPanel>
+            <ListView ItemsSource="{x:Bind ViewModel.CommentRestaurants, Mode=OneWay}" Name="ListViewRestaurant" 
+                      Margin="10, 0, 0, 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="tables:CommentRestaurant">
+                        <Grid  AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{x:Bind Comment, Mode=OneWay}" TextWrapping="WrapWholeWords"></TextBlock>
+                            <RelativePanel Grid.Row ="1" >
+                                <TextBlock Text="{x:Bind User.UserName}"></TextBlock>
+                                <Slider Minimum="1" Maximum="5" StepFrequency="1" Width="150"
+                                        Value="{x:Bind Rating, Mode=OneWay}" TickFrequency="1"
+                                        TickPlacement="Outside" 
+                                        Margin="150, 0, 0, 0" />
+                            </RelativePanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
