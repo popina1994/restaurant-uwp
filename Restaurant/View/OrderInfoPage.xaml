@@ -63,7 +63,7 @@
                                     <TextBlock Text="{x:Bind Meal.Price}" FontSize="30"></TextBlock>
                                 </StackPanel>
                                 <RelativePanel>
-                                    <TextBlock Text="Комада" x:Name="TextBlockAmountLabel" FontSize="30"/>
+                                    <TextBlock Text="Комада:" x:Name="TextBlockAmountLabel" FontSize="30"/>
                                     <TextBlock Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount" 
                                                RelativePanel.RightOf="TextBlockAmountLabel" FontSize="30"/>
                                 </RelativePanel>
@@ -146,7 +146,7 @@
                         <TextBlock Text="{x:Bind ViewModel.Order.DateTimeDelivered, Mode=OneWay,Converter={StaticResource DateConverter}}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
-                    <TextBlock Text="Плаћено са"></TextBlock>
+                    <TextBlock Text="Плаћено са:"></TextBlock>
                     <TextBlock Text="{x:Bind ViewModel.Order.PaidBy}"></TextBlock>
                 </StackPanel>
             </Grid>
