@@ -43,6 +43,23 @@ namespace Restaurant
             }
 
             this.viewModel = new CartViewModel(ocMeals);
+
+            UpdateHasOrders();
+        }
+
+        private void UpdateHasOrders()
+        {
+            bool hasOrders = false;
+            foreach (var it in DatabaseModel.MealsTable.Values)
+            {
+                if (it.Amount > 0)
+                {
+                    ViewModel.HasOrders = true;
+                    return;
+                }
+            }
+
+            ViewModel.HasOrders = false;
         }
 
         public CartViewModel ViewModel
@@ -61,6 +78,7 @@ namespace Restaurant
             Button button = (Button)e.OriginalSource;
             Meal meal = (Meal)button.DataContext;
             meal.Amount++;
+            UpdateHasOrders();
         }
 
         private void ButtonDecAmount_OnClick(object sender, RoutedEventArgs e)
@@ -73,6 +91,8 @@ namespace Restaurant
             {
                 ViewModel.Meals.Remove(meal);
             }
+            UpdateHasOrders();
+
         }
 
         private void ButtonChoosePayment_OnClick(object sender, RoutedEventArgs e)

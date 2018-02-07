@@ -142,6 +142,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
                                 <TextBlock Grid.Row="1" Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
@@ -152,6 +153,16 @@
                                     <TextBlock Text="Цена: " ></TextBlock>
                                     <TextBlock Text="{x:Bind Price}" ></TextBlock>
                                 </StackPanel>
+                                <RelativePanel Grid.Row="5" Visibility="{x:Bind IsOrderer, Mode=OneWay}">
+                                    <Button Grid.Row="1" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonDecAmount" HorizontalAlignment="Center"
+                                            Width="50"  Background="Red" VerticalAlignment="Center" Height="32" Click="ButtonDecAmount_OnClick"/>
+                                    <TextBox InputScope="Number" Text="{x:Bind Amount, Mode=OneWay}" x:Name="TextBoxAmount"
+                                             RelativePanel.RightOf="ButtonDecAmount"/>
+                                    <Button Grid.Row="1" Content="&#xE948;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonIncAmount" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            RelativePanel.RightOf="TextBoxAmount" Width="50" Height="32" Background="ForestGreen"
+                                            Click="ButtonIncAmount_OnClick"/>
+                                </RelativePanel>
+
                             </Grid>
                         </Grid>
                     </DataTemplate>

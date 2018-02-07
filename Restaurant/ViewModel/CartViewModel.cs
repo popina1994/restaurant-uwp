@@ -10,9 +10,10 @@ using Restaurant.Model.Tables;
 
 namespace Restaurant.ViewModel
 {
-    public class CartViewModel
+    public class CartViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Meal> meals;
+        private bool hasOrders;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -29,6 +30,12 @@ namespace Restaurant.ViewModel
         public CartViewModel(ObservableCollection<Meal> meals)
         {
             this.meals = meals;
+        }
+
+        public bool HasOrders
+        {
+            get => hasOrders;
+            set { hasOrders = value;  this.OnPropertyChanged();}
         }
     }
 }

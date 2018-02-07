@@ -235,8 +235,8 @@ namespace Restaurant
                 var matches = DatabaseModel.OrdersTable.Where(
                     x => (x.Value.DateTimeOrdered >= DatePickerFrom.Date.DateTime)
                        && ((x.Value.Status == Order.NotDelivered) || (x.Value.DateTimeDelivered <= DatePickerTo.Date.DateTime))
-                       && ((x.Value.Amount > Int32.Parse(TextBoxMinPrice.Text)
-                        && (x.Value.Amount < Int32.Parse((TextBoxMaxPrice.Text)))))
+                       && ((x.Value.Amount >= Int32.Parse(TextBoxMinPrice.Text)
+                        && (x.Value.Amount <= Int32.Parse((TextBoxMaxPrice.Text)))))
 
                     ).Select(pair => pair.Value);
             //}

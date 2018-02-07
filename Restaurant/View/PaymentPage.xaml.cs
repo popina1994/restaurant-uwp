@@ -67,7 +67,7 @@ namespace Restaurant.View
                 {
                     OrderMealOption orderMealOption = new OrderMealOption(it, it.Amount, false);
                     orderMealOptions.Add(orderMealOption.Id, orderMealOption);
-                    fulAmount += it.Amount;
+                    fulAmount += it.Amount * it.Price;
                     it.Amount = 0;
                 }
             }
@@ -95,6 +95,7 @@ namespace Restaurant.View
             
             Order order = new Order(user, orderMealOptions, fulAmount, Order.NotDelivered, paidBy, DateTime.Now, new DateTime(1, 1, 1), 0);
             DatabaseModel.OrdersTable.Add(order.Id, order);
+            ViewModel.NotPaid= false;
         }
     }
 }

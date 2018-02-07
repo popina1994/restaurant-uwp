@@ -14,95 +14,95 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="10,17,10, 30">
+        <StackPanel Grid.Row="0" >
 
             <Grid Margin="0, 10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Укупно" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Укупно" FontSize="25" />
                 <Border Grid.Column="1"  >
-                <TextBlock Grid.Column="1"  Name="TextBlockPayement"  Text="{x:Bind ViewModel.Price, Mode=OneWay}"  TextAlignment="Center"
-                           FontSize="30"/>
+                    <TextBlock Grid.Column="1"  Name="TextBlockPayement"  Text="{x:Bind ViewModel.Price, Mode=OneWay}"  TextAlignment="Center"
+                           FontSize="25"/>
                 </Border>
             </Grid>
-            <Grid Margin="0, 10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Начин плаћања" FontSize="30" />
-                <Grid Margin="0, 10" HorizontalAlignment="Center" Grid.Column="1">  
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Начин плаћања" FontSize="25" />
+                <Grid Margin="0, 10, 10, 0" Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <RadioButton Grid.Column="0" x:Name="RadioButtonOptionPayPal" Content="PayPal" ></RadioButton>
                     <RadioButton Grid.Column="1" x:Name="RadioButtonOptionVisa" Content="Visa"></RadioButton>
-                    <RadioButton Grid.Column="2" x:Name="RadioButtonOptionMasterCard" Content="MasterCard"></RadioButton>
+                    <RadioButton Grid.Column="2" x:Name="RadioButtonOptionMasterCard" Content="Master"></RadioButton>
                     <RadioButton Grid.Column="3" x:Name="RadioButtonOptionCash" Content="Cash" IsChecked="True"></RadioButton>
                 </Grid>
             </Grid>
 
-            <Grid Margin="0, 10">
+            <Grid Margin="0, 10, 2, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Име" FontSize="22" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxFirstName" PlaceholderText="Име"
                           TextAlignment="Center"/>
-            </Grid> 
-            <Grid Margin="0, 10">
+            </Grid>
+            <Grid Margin="0, 10, 2, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Презиме" FontSize="22" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxLastName" PlaceholderText="Презиме"
                           TextAlignment="Center"/>
             </Grid>
 
-            <Grid Margin="0, 10">
+            <Grid Margin="0, 10, 2, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Број картице" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Број картице" FontSize="22" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxCardNumber" PlaceholderText="xxx-xxxx-xxxxx-xxxx"
                           TextAlignment="Center"/>
             </Grid>
 
-            <Grid Margin="0, 10">
+            <Grid Margin="0, 10, 2, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" Text="CVV"  FontSize="30" HorizontalAlignment="Center"/>
+                <TextBlock  Grid.Column="0" Text="CVV"  FontSize="22" HorizontalAlignment="Center"/>
 
                 <PasswordBox Grid.Column="1" BorderBrush="LightGray" Name="PasswordBoxCvv"  PlaceholderText="xxx"
                              PasswordRevealMode="Peek" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </Grid>
 
-            <Grid Margin="0, 10">
+            <Grid Margin="0, 10, 2, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Важи до" FontSize="30" />
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="Важи до" FontSize="25" />
                 <TextBox  Grid.Column="1" BorderBrush="LightGray" Name="TextBoxValidTo" PlaceholderText="dd/mm/yyyy"
                           TextAlignment="Center"/>
             </Grid>
 
-            <TextBlock  Text="Result" Margin="0, 10, 0, 0" FontSize="30" Foreground="LawnGreen"  HorizontalAlignment="Center"
+            <TextBlock  Text="Result" Margin="0, 10, 0, 0" FontSize="25" Foreground="LawnGreen"  HorizontalAlignment="Center"
                         Visibility="Collapsed" Name="TextBlockResult"/>
 
 
-            <Button Content="Плати" FontSize="30" Name="ButtonPay" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0" Visibility="{x:Bind ViewModel.NotPaid, Mode=OneWay}" 
+            <Button Content="Плати" FontSize="25" Name="ButtonPay" HorizontalAlignment="Stretch" Margin="10, 40, 10, 0" Visibility="{x:Bind ViewModel.NotPaid, Mode=OneWay}"
                     Click="ButtonPay_OnClick"/>
-            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

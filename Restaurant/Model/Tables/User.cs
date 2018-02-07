@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace Restaurant.Model.Tables
@@ -22,7 +23,7 @@ namespace Restaurant.Model.Tables
         private string phone;
         private string address;
         private string email;
-
+        private Geopoint locationGeopoint;
         public int Type
         {
             get => type;
@@ -78,7 +79,14 @@ namespace Restaurant.Model.Tables
             set => email = value;
         }
 
-        public User(string userName, string password, int type, string firstName, string lastName, string phone, string address, string email)
+        public Geopoint LocationGeopoint
+        {
+            get => locationGeopoint;
+            set => locationGeopoint = value;
+        }
+
+
+        public User(string userName, string password, int type, string firstName, string lastName, string phone, string address, string email, Geopoint locationGeopoint)
         {
             this.id = ID_USER_GENERATED ++;
             this.userName = userName;
@@ -89,10 +97,9 @@ namespace Restaurant.Model.Tables
             this.address = address;
             this.email = email;
             this.type = type;
+            this.locationGeopoint = locationGeopoint;
         }
 
-        public User()
-        {
-        }
+
     }
 }
