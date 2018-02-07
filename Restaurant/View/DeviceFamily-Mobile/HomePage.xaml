@@ -5,42 +5,48 @@
     xmlns:local="using:Restaurant"
     xmlns:viewModel="using:Restaurant.ViewModel"
     xmlns:tables ="using:Restaurant.Model.Tables"
+    xmlns:logic ="using:Restaurant.Logic"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
 
 
     <Page.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="WrapWholeWords" />
         </Style>
+        <logic:NegationBooleanVisibilityConverter x:Key="NegBoolVis"/>
+        <logic:TypeStringConverter x:Key="TypeStringConverter"/>
+        <logic:GroupToColourConverter x:Key="GroupToColourConverter"/>
+        <logic:DateConverter x:Key="DateConverter"/>
     </Page.Resources>
+    <ScrollViewer>
+        <Grid x:Name="RootGrid" Margin="12,0,12,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-    <Grid x:Name="RootGrid" Margin="12,0,12,12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Pivot Grid.Row="1" SelectionChanged="Pivot_OnSelectionChanged">
-            <Pivot.LeftHeader>
-                <Grid>
-                    <AppBarButton Icon="Find" x:Name="CompactSearchBox" Visibility="Collapsed"
+            <Pivot Grid.Row="1" SelectionChanged="Pivot_OnSelectionChanged" x:Name="PivotGlobal">
+                <Pivot.LeftHeader>
+                    <Grid>
+                        <AppBarButton Icon="Find" x:Name="CompactSearchBox" Visibility="Collapsed"
                               VerticalAlignment="Stretch">
-                        <AppBarButton.Flyout>
-                            <Flyout>
-                                <AutoSuggestBox
+                            <AppBarButton.Flyout>
+                                <Flyout>
+                                    <AutoSuggestBox
                                 VerticalAlignment="Center" Width="250" Margin="4,4,8,4"
                                 QueryIcon="Find" PlaceholderText="Претражи"
                                 TextChanged="AutoSuggestBox_OnTextChanged"
                                 QuerySubmitted= "AutoSuggestBox_OnQuerySubmitted"
                             />
-                            </Flyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                                </Flyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
 
-                    <AutoSuggestBox x:Name="SearchBox"
+                        <AutoSuggestBox x:Name="SearchBox"
                                 VerticalAlignment="Center" Width="180" Margin="4,4,8,4"
                                 QueryIcon="Find" PlaceholderText="Ресторан"
                                 TextChanged="AutoSuggestBox_OnTextChanged"
@@ -48,12 +54,12 @@
 
 
                 />
-                </Grid>
-            </Pivot.LeftHeader>
-            <PivotItem Header="Ресторани" Name="PivotRestaurant">
-                <ScrollViewer>
+                    </Grid>
+                </Pivot.LeftHeader>
+                <PivotItem Header="Ресторани" Name="PivotItemRestaurant">
+
                     <StackPanel Orientation="Vertical" >
-                    
+
                         <Grid Visibility="{x:Bind ViewModel.IsSearchRestaurantShown, Mode=OneWay}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -112,52 +118,53 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxTue" Content="УТО" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerTueEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="8"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxWed" Content="СРЕ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerWedEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="9"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxThu" Content="ЧЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerThuStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerThuEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="10"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxFri" Content="ПЕТ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerFriEnd"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="11"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSat" Content="СУБ" FlowDirection="LeftToRight"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatStart" />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSatEnd" />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="12"  Margin="0,10,0,0">
                                 <CheckBox x:Name="CheckBoxSun" Content="НЕД" FlowDirection="LeftToRight" />
                                 <StackPanel Orientation="Vertical">
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
-                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  />
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0"  x:Name="TimePickerSunStart"/>
+                                    <TimePicker ClockIdentifier="24HourClock" Margin="-40, 0, 0, 0" x:Name="TimePickerSunEnd" 
+                                                />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="13"  Margin="0,10,0,0" HorizontalAlignment="Center">
-                                <TextBlock Text="Време доставе" HorizontalAlignment="Center"/>
-                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0"  />
+                                <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
+                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0" x:Name="TimePickerDeliveryTime"  Time="02:00"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="14" HorizontalAlignment="Center">
                                 <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
-                                <TextBox Name="TextBoxDescription" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                                <TextBox Name="TextBoxDescriptionRestaurant" Width="183" Margin="10, 10, 0, 0"></TextBox>
                             </StackPanel>
 
                             <StackPanel Grid.Row="15" HorizontalAlignment="Center">
@@ -167,41 +174,41 @@
                                     <CheckBox x:Name="CheckboxMaster" Content="MasterCard" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                     <CheckBox x:Name="CheckboxCash" Content="Кеш" IsThreeState="True" IsChecked="{x:Null}" />
+                                    <CheckBox x:Name="CheckboxCash" Content="Кеш" IsThreeState="True" IsChecked="{x:Null}" />
                                     <CheckBox x:Name="CheckboxPayPal" Content="PayPal" IsThreeState="True" IsChecked="{x:Null}"/>
                                 </StackPanel>
                             </StackPanel>
 
                         </Grid>
-                    <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchRestaurantShow"
-                                Click="ButtonSearchRestaurantShow_OnClick" HorizontalAlignment="Center"
+                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchRestaurantShow"
+                                Click="ButtonSearchRestaurantShow_OnClick" HorizontalAlignment="Center" Margin="0, 10, 0, 0"
                             Width="150"></Button>
 
-                    <ListView ItemsSource="{x:Bind ViewModel.Restaurants, Mode=OneWay}" Name="ListViewRestaurant" SelectionChanged="ListViewRestaurant_OnSelectionChanged"
+                        <ListView ItemsSource="{x:Bind ViewModel.Restaurants, Mode=OneWay}" Name="ListViewRestaurant" SelectionChanged="ListViewRestaurant_OnSelectionChanged"
                           Margin="-10, 0, 0, 0">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="tables:RestaurantSpec">
-                                <Grid Height="200" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Rectangle Grid.Column="1" Height="150" Width="150" VerticalAlignment="Center">
-                                        <Rectangle.Fill>
-                                            <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="tables:RestaurantSpec">
+                                    <Grid Height="200" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle Grid.Column="1" Height="150" Width="150" VerticalAlignment="Center">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
 
-                                    <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,0,0,0">
-                                        <Grid.RowDefinitions>   
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                         <TextBlock Grid.Row="0" Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
-                                        <TextBlock  Grid.Row="1" Text="{x:Bind Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                            <TextBlock Grid.Row="0" Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                            <TextBlock  Grid.Row="1" Text="{x:Bind Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
                                             <Slider Grid.Row="2" Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
                                                 Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
                                             <Button Grid.Row="3" Background="LightGray" HorizontalAlignment="Center">
@@ -211,84 +218,289 @@
                                                            HorizontalAlignment="Center"/>
                                                 </StackPanel>
                                             </Button>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
-                </ScrollViewer>
-            </PivotItem>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </PivotItem>
 
-            <PivotItem Header="Јела" Name="PivotMeal">
-                <ListView ItemsSource="{x:Bind ViewModel.Meals, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
-                          Margin="10, 0, 0, 0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Meal">
-                            <Grid Height="300" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Rectangle Grid.Column="1" Height="250" Width="250" VerticalAlignment="Center">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
+                <PivotItem Header="Јела" x:Name="PivotItemMeal" Visibility="{x:Bind ViewModel.IsDeliverer, Converter={StaticResource NegBoolVis}}">
 
-                                <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
-                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" FontSize="80"/>
-                                        <TextBlock Text="{x:Bind Ingridients, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="50"/>
-                                    </StackPanel>
-                                    <!--
-                                    <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="100,0,0,0">
-                                        <Slider Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
-                                                Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
-                                        <Button Background="LightGray" >
-                                            <StackPanel>
-                                                <Image Source="/Assets/Icons/Button/Order.png" Height="62" Width="200"/>
-                                                <TextBlock Text="Јела" Foreground="Black"
-                                                           HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical" >
+                        <Grid Margin="0, 0, 0, 0" Visibility="{x:Bind ViewModel.IsSearchMealShown, Mode=OneWay}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                                <TextBlock Text="Ресторан" Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxRestaurantMeal" Width="183" Margin="0, 10, 0, 0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                                <TextBlock Text="Кухиња"  Margin="-1, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxKitchenMeal" Width="183" Margin="10, 10, 0, 0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                                <TextBlock Text="Min цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMinPrice" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="1000" StepFrequency="0.1"
+                                ></Slider>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                                <TextBlock Text="Max цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMaxPrice" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="1000" StepFrequency="0.1"
+                                        Value="1000"
+                            ></Slider>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="Категорија:" HorizontalAlignment="Center" Margin="-40, 0, 0,0"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <CheckBox x:Name="CheckboxBreakfeast" Content="Доручак" IsChecked="False"/>
+                                    <CheckBox x:Name="CheckboxLunch" Content="Ручак" IsChecked="False"></CheckBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <CheckBox x:Name="CheckboxDinner" Content="Вечера" IsChecked="False" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                                <TextBlock Text="Min оцена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMinRatingMeal" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                ></Slider>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center">
+                                <TextBlock Text="Max оцена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <Slider Name="SliderMaxRatingMeal" Width="150" Margin="10, 10, 0, 0" Minimum="1" Maximum="5" StepFrequency="0.1"
+                                        Value="5"
+                                ></Slider>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center">
+                                <TextBlock Text="Састојци"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxIngridientsMeal" Width="150" Margin="10, 10, 0, 0"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
+                                <TextBlock Text="Опис"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxDescriptionMeal" Width="150" Margin="35, 10, 0, 0"></TextBox>
+                            </StackPanel>
+
+
+
+                        </Grid>
+                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchMealShow"
+                                Click="ButtonSearchMealShow_OnClick" HorizontalAlignment="Center"
+                            Width="150"></Button>
+
+                        <ListView ItemsSource="{x:Bind ViewModel.Meals, Mode=OneWay}" Name="ListViewMeals" SelectionChanged="ListViewMeals_OnSelectionChanged"
+                          Margin="-10, 0, 0, 0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:Name="DoubleLineDataTemplate3" x:DataType="tables:Meal">
+                                    <Grid Height="200" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle Grid.Column="1" Height="150" Width="150" VerticalAlignment="Center">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="{x:Bind ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+
+                                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="12,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Text="{x:Bind Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                            <TextBlock Grid.Row="1" Text="{x:Bind Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                            <TextBlock Grid.Row="2" Text="{x:Bind Restaurant.Address, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                            <Slider Grid.Row="3" Minimum="1" Maximum="5" StepFrequency="1" TickFrequency="1" TickPlacement="Outside"
+                                            Value="{x:Bind Rating, Mode=OneWay}" ></Slider>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                                                <TextBlock Text="Цена: " ></TextBlock>
+                                                <TextBlock Text="{x:Bind Price}" ></TextBlock>
                                             </StackPanel>
-                                        </Button>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </PivotItem>
+
+                <PivotItem Header="Поруџбине" Name="PivotOrder">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="0,40, 0, 0"  Visibility="{x:Bind ViewModel.IsSearchOrderShown, Mode=OneWay}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                                <TextBlock Text="Од" Margin="0, 14, 0, 0"></TextBlock>
+                                <DatePicker Name="DatePickerFrom" Width="183" Margin="0, 10, 0, 0"   MonthFormat="{}{month.integer}" ></DatePicker>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                                <TextBlock Text="До"  Margin="-1, 14, 0, 0"></TextBlock>
+                                <DatePicker Name="DatePickerTo" Width="183" Margin="0, 10, 0, 0"  MonthFormat="{}{month.integer}" ></DatePicker>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                                <TextBlock Text="Min цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxMinPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="1"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                                <TextBlock Text="Max цена"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxMaxPrice" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="10000"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                                <TextBlock Text="Удаљеност до"  Margin="0, 14, 0, 0"></TextBlock>
+                                <TextBox Name="TextBoxMaxDist" InputScope="Number" Width="183" Margin="10, 10, 0, 0"
+                                         Text="1000"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.IsDeliverer}">
+                                <TextBlock Text="Време доставе" HorizontalAlignment="Center" />
+                                <TimePicker ClockIdentifier="24HourClock" Margin="0, 0, 0, 0" x:Name="TimePickerDeliveryTimeOrder"  Time="02:00"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Button Content="&#xE70D;" FontFamily="Segoe MDL2 Assets" x:Name="ButtonSearchOrderShow"
+                                Click="ButtonSearchOrderShow_OnClick" HorizontalAlignment="Center"
+                                Width="150"></Button>
+
+                        <ListView ItemsSource="{x:Bind ViewModel.Orders, Mode=OneWay}" Name="ListViewOrders" SelectionChanged="ListViewOrders_OnSelectionChanged"
+                          Margin="-10, 0, 0, 0" RightTapped="ListViewOrders_OnRightTapped">
+                            <ListView.Resources>
+                                <MenuFlyout x:Name="MenuFlyoutOrder">
+                                    <MenuFlyout.Items>
+                                        <MenuFlyoutItem x:Name="MenuFlyoutItemG1"  Text= "Додај у 1" Background="Green"
+                                                    Click="MenuFlyoutItemG_OnClick"/>
+                                        <MenuFlyoutItem x:Name="MenuFlyoutItemG2"  Foreground="Black" Text="Додај у 2" Background="Yellow" Click="MenuFlyoutItemG_OnClick"/>
+                                        <MenuFlyoutItem x:Name="MenuFlyoutItemG3"  Text="Додај у 3" Background="Blue" Click="MenuFlyoutItemG_OnClick"/>
+                                        <MenuFlyoutItem x:Name="MenuFlyoutItemG4"  Text="Додај у 4" Background="Red" Click="MenuFlyoutItemG_OnClick"/>
+                                        <MenuFlyoutItem x:Name="MenuFlyoutItemG5"  Text="Додај у 5" Background="Gray" Click="MenuFlyoutItemG_OnClick"/>
+                                    </MenuFlyout.Items>
+                                </MenuFlyout>
+                            </ListView.Resources>
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="tables:Order">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Background="{x:Bind Group, Converter={StaticResource GroupToColourConverter}, Mode=OneWay}">
+                                            <TextBlock Text="{x:Bind DateTimeOrdered, Converter={StaticResource DateConverter}}" FontSize="23"></TextBlock>
+                                            <TextBlock Margin="20, 0, 0, 0" Text="{x:Bind DateTimeDelivered, Converter={StaticResource DateConverter}}" FontSize="23"></TextBlock>
+                                        </StackPanel>
+                                        <Grid Height="200" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <ListView Grid.Column="0" ItemsSource="{x:Bind OrderMealOptions.Values, Mode=OneWay}" Name="ListViewMealsOptions"
+                                              Width="300" SelectionChanged="ListViewMealsOptions_OnSelectionChanged">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate x:Name="DataTemplatMeals" x:DataType="tables:OrderMealOption">
+                                                        <Grid Height="150" AutomationProperties.Name="{x:Bind Id, Mode=OneWay}" Margin="-10, 0, 0, 0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Rectangle Grid.Column="1" Height="150" Width="150" VerticalAlignment="Center">
+                                                                <Rectangle.Fill>
+                                                                    <ImageBrush ImageSource="{x:Bind Meal.ImagePathLinkedList.First.Value, Mode=OneWay}"/>
+                                                                </Rectangle.Fill>
+                                                            </Rectangle>
+                                                            
+                                                            <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                </Grid.RowDefinitions>
+                                                                <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center">
+                                                                    <TextBlock Text="{x:Bind Meal.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                                                    <TextBlock Text="{x:Bind Meal.Restaurant.Name, Mode=OneWay}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                                                    <TextBlock Text="{x:Bind Meal.Restaurant.Address, Mode=OneWay}" 
+                                                                              TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                                                </StackPanel>
+
+                                                                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,0">
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="Цена: " ></TextBlock>
+                                                                        <TextBlock Text="{x:Bind Meal.Price}" ></TextBlock>
+                                                                    </StackPanel>
+                                                                    <RelativePanel Grid.Column="2">
+                                                                        <TextBlock Text="Број: "  x:Name="TextBlockNumber"></TextBlock>
+                                                                        <TextBlock Text="{x:Bind Amount, Mode=OneWay}" RelativePanel.RightOf="TextBlockNumber" />
+                                                                    </RelativePanel>
+                                                                </StackPanel>
+                                                            </Grid>
+                                                            
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </Grid>
                                     </StackPanel>
-                                    -->
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </PivotItem>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </PivotItem>
 
-            <PivotItem Header="Поруџбине" Name="PivotOrder">
-                <StackPanel>
-                    <TextBlock><Run Text="To provide a great experience from mobile to desktop, Pivot now supports two header styles, Dynamic Headers and Static Headers."/><LineBreak/></TextBlock>
-                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"><Run Text="Dynamic Headers"/></TextBlock>
-                    <TextBlock><Run Text="With a focus on mobile and small screen, dynamic headers automatically revolve in the header area with the currently selected PivotItem always the first item."/><LineBreak/><Run Text=" "/><Run Text="Dynamic headers are automatically enabled when the combined width of your PivotItem.Header elements exceeds the width availabe to the Pivot control."/><LineBreak/></TextBlock>
-                    <Image Source="/Assets/DynamicHeader.png" Width="350" Stretch="Uniform" HorizontalAlignment="Left" />
+            </Pivot>
 
-                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"><Run Text="Static Headers"/></TextBlock>
-                    <TextBlock><Run Text="Targeting devices with larger displays, static headers keep a fixed position in the header area, regardless of which item is currently selected."/><LineBreak/><Run Text=" "/><Run Text="Static headers are automatically enabled when the combined width of your PivotItem.Header elements fits within the width available to the Pivot control"/><LineBreak/></TextBlock>
-                    <Image Source="/Assets/StaticHeader.png" Width="350" Stretch="Uniform" HorizontalAlignment="Left" />
-                </StackPanel>
-            </PivotItem>
 
-        </Pivot>
-
-        <!-- Status Block for providing messages to the user.  Use the
-            NotifyUser() method to populate the message -->
-        <Grid>
 
         </Grid>
-
-        <Border x:Name="ErrorBorder" Background="Red" Grid.Row="2"/>
-        <TextBlock x:Name="StatusBlock" Grid.Row="2" Margin="12, 10, 12, 10" Visibility="Visible"/>
-    </Grid>
+    </ScrollViewer>
 </Page>

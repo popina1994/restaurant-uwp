@@ -22,6 +22,8 @@ namespace Restaurant.ViewModel
         private bool isUnregistered;
 
         private bool isSearchRestaurantShown = false;
+        private bool isSearchMealShown = false;
+        private bool isSearchOrderShown = false;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -95,6 +97,22 @@ namespace Restaurant.ViewModel
         {
             get => isUnregistered;
             set => isUnregistered = value;
+        }
+
+        public bool IsSearchMealShown
+        {
+            get => isSearchMealShown;
+            set
+            {
+                isSearchMealShown = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool IsSearchOrderShown
+        {
+            get => isSearchOrderShown;
+            set { isSearchOrderShown = value; this.OnPropertyChanged();}
         }
     }
 }

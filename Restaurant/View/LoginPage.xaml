@@ -15,13 +15,13 @@
         <StackPanel Grid.Row="0" Margin="10,17,10, 30">
 
             <TextBlock HorizontalAlignment="Center" Text="Корисничко име" FontSize="30" Margin="0, 0, 0, 10"/>
-            <TextBox  BorderBrush="LightGray" Name="TextBoxUserName" PlaceholderText="email"/>
+            <TextBox  BorderBrush="LightGray" Name="TextBoxUserName" PlaceholderText="Корисничко име"/>
 
             <TextBlock  Text="Шифра" Margin="0, 10, 0, 0" FontSize="30" HorizontalAlignment="Center"/>
             <PasswordBox BorderBrush="LightGray" Name="PasswordBoxPassword"  PlaceholderText="шифра"/>
 
             <TextBlock  Text="Грешка" Margin="0, 10, 0, 0" FontSize="30" Foreground="Red"  HorizontalAlignment="Center"
-                        Visibility="Collapsed" Name="TextBlockError"/>
+                        Visibility="Collapsed" Name="TextBlockError" TextWrapping="WrapWholeWords"/>
             
 
             <Button Content="Улогуј се" FontSize="30" Name="Login" HorizontalAlignment="Stretch" Margin="0, 40, 0, 0"

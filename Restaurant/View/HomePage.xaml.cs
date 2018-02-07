@@ -65,18 +65,18 @@ namespace Restaurant
                 ocOrders.Add(it);
             }
 
-            /*
+            
             DateTime dateTime = new DateTime(2001, 1, 1);
             DateTimeOffset offset = DateTime.SpecifyKind(dateTime, DateTimeKind.Local);
 
             DatePickerFrom.Date = offset;
-            */
+            
             this.viewModel = new RestaurantViewModel(ocRestaurantSpecs, ocMeals, ocOrders);
             ShellModel shellModel = Navigation.Shell.Model;
             ViewModel.IsDeliverer = shellModel.IsDeliverer;
             ViewModel.IsOrderer = shellModel.IsOrderer;
             ViewModel.IsUnregistered = !shellModel.IsRegistered;
-            FilterOrders(true);
+            FilterOrders();
         }
 
         public RestaurantViewModel ViewModel
@@ -157,7 +157,7 @@ namespace Restaurant
                     FilterMeal();
                     break;
                 case "PivotItemOrder":
-                    FilterOrders(false);
+                    FilterOrders();
                     break;
             }
         }
@@ -194,13 +194,14 @@ namespace Restaurant
                     FilterMeal();
                     break;
                 case "PivotItemOrder":
-                    FilterOrders(false);
+                    FilterOrders();
                     break;
             }
         }
 
-        private void FilterOrders(bool isInit)
+        private void FilterOrders()
         {
+            /*
             IEnumerable<Order> matches;
             if (isInit)
             {
@@ -210,14 +211,15 @@ namespace Restaurant
             }
             else
             {
-                matches = DatabaseModel.OrdersTable.Where(
+            */
+                var matches = DatabaseModel.OrdersTable.Where(
                     x => (x.Value.DateTimeOrdered >= DatePickerFrom.Date.DateTime)
                        && ((x.Value.Status == Order.NotDelivered) || (x.Value.DateTimeDelivered <= DatePickerTo.Date.DateTime))
                        && ((x.Value.Amount > Int32.Parse(TextBoxMinPrice.Text)
                         && (x.Value.Amount < Int32.Parse((TextBoxMaxPrice.Text)))))
 
                     ).Select(pair => pair.Value);
-            }
+            //}
             this.ViewModel.Orders.Clear();
             if (ViewModel.IsDeliverer)
             {
@@ -394,6 +396,19 @@ namespace Restaurant
                     Navigation.Navigate(typeof(RestaurantInfoPage), restaurantInfoParams);
                 }
             }
+        }
+
+        private void ButtonSearchMealShow_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.IsSearchMealShown= !ViewModel.IsSearchMealShown;
+            ButtonSearchMealShow.Content = ViewModel.IsSearchMealShown? "\uE70E" : "\uE70D";
+
+        }
+
+        private void ButtonSearchOrderShow_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.IsSearchOrderShown = !ViewModel.IsSearchOrderShown;
+            ButtonSearchOrderShow.Content = ViewModel.IsSearchOrderShown ? "\uE70E" : "\uE70D";
         }
     }
 }
