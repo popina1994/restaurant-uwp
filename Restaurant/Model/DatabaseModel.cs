@@ -129,12 +129,14 @@ namespace Restaurant.Model
 
         private static void initUserTable()
         {
+            Geopoint geopointLopatanj = new Geopoint(new BasicGeoposition() { Latitude = 44.317528, Longitude = 19.602873 });
+
             userTableDefault = default(KeyValuePair<int, User>);
             User user1 = new User("popina", "1", User.TYPE_DELIVERER, "Ђорђе", "Живановић", "111-111-111", "Лопатањ б.б.",
-                "djordj@djordje.com");
+                "djordj@djordje.com", geopointLopatanj);
             User user2 = new User("popina1", "1", User.TYPE_ORDERER, "Marko", "Markovic", "111-111-111", "Лопатањ б.б.",
-                "marko@marko.com");
-            UNREGISTERED_USER = new User("notregistered", "", User.TYPE_UNREGISTERED, "", "", "", "", "");
+                "marko@marko.com", geopointLopatanj);
+            UNREGISTERED_USER = new User("notregistered", "", User.TYPE_UNREGISTERED, "", "", "", "", "", geopointLopatanj);
 
             userTable = new Dictionary<int, User> {{user1.Id, user1}, {user2.Id, user2}, { UNREGISTERED_USER.Id, UNREGISTERED_USER } };
         }
@@ -180,11 +182,13 @@ namespace Restaurant.Model
 
             LinkedList<string> meal1ImagePath = new LinkedList<string>();
             meal1ImagePath.AddLast(MEALS_PATH + "Bean.jpg");
+            meal1ImagePath.AddLast(MEALS_PATH + "Bean1.jpg");
             Meal meal1 = new Meal("Пасуљ", 100, "Доручак", "Пасуљ, Бресква", "Врхунско", meal1ImagePath,
                 RestaurantTable.First(x => x.Value.Id == 0).Value, 4);
 
             LinkedList<string> meal2ImagePath = new LinkedList<string>();
             meal2ImagePath.AddLast(MEALS_PATH + "Meat.jpg");
+            meal2ImagePath.AddLast(MEALS_PATH + "Meat1.jpg");
             Meal meal2 = new Meal("Месо", 200, "Ручак", "Коњ, кокошка", "Љуто", meal2ImagePath,
                 RestaurantTable.First(x => x.Value.Id == 1).Value, 5);
 

@@ -186,7 +186,9 @@
     <Content Include="Assets\Icons\Pin\Red.png" />
     <Content Include="Assets\Icons\Pin\Yellow.png" />
     <Content Include="Assets\Images\Meals\Bean.jpg" />
+    <Content Include="Assets\Images\Meals\Bean1.jpg" />
     <Content Include="Assets\Images\Meals\Meat.jpg" />
+    <Content Include="Assets\Images\Meals\Meat1.jpg" />
     <Content Include="Assets\Images\Restaurant\1.jpg" />
     <Content Include="Assets\Images\Restaurant\2.jpg" />
     <Content Include="Assets\Images\Restaurant\3.jpg" />

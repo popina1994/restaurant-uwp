@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -56,7 +57,8 @@ namespace Restaurant
                 return;
             }
 
-            User user = new User(userName, password, User.TYPE_ORDERER, firstName, lastName, phone, address, email);
+            Geopoint geopointLopatanj = new Geopoint(new BasicGeoposition() { Latitude = 44.317528, Longitude = 19.602873 });
+            User user = new User(userName, password, User.TYPE_ORDERER, firstName, lastName, phone, address, email, geopointLopatanj);
             DatabaseModel.UserTable.Add(user.Id, user);
             Navigation.Navigate(typeof(LoginPage));
         }

@@ -65,12 +65,12 @@ namespace Restaurant
                 ocOrders.Add(it);
             }
 
-            
+
             DateTime dateTime = new DateTime(2001, 1, 1);
             DateTimeOffset offset = DateTime.SpecifyKind(dateTime, DateTimeKind.Local);
 
             DatePickerFrom.Date = offset;
-            
+
             this.viewModel = new RestaurantViewModel(ocRestaurantSpecs, ocMeals, ocOrders);
             ShellModel shellModel = Navigation.Shell.Model;
             ViewModel.IsDeliverer = shellModel.IsDeliverer;
@@ -89,14 +89,14 @@ namespace Restaurant
                 PivotGlobal.Items.Add(PivotItemMeal);
                 PivotGlobal.Items.Add(PivotItemRestaurant);
                 PivotGlobal.Items.Add(PivotItemOrder);
-                }
+            }
             else
             {
                 PivotGlobal.Items.Clear();
                 PivotGlobal.Items.Add(PivotItemRestaurant);
                 PivotGlobal.Items.Add(PivotItemMeal);
             }
-            
+
         }
 
         public RestaurantViewModel ViewModel
@@ -232,13 +232,14 @@ namespace Restaurant
             else
             {
             */
-                var matches = DatabaseModel.OrdersTable.Where(
-                    x => (x.Value.DateTimeOrdered >= DatePickerFrom.Date.DateTime)
-                       && ((x.Value.Status == Order.NotDelivered) || (x.Value.DateTimeDelivered <= DatePickerTo.Date.DateTime))
-                       && ((x.Value.Amount >= Int32.Parse(TextBoxMinPrice.Text)
-                        && (x.Value.Amount <= Int32.Parse((TextBoxMaxPrice.Text)))))
+            var matches = DatabaseModel.OrdersTable.Where(
+                x => (x.Value.DateTimeOrdered >= DatePickerFrom.Date.DateTime)
+                   && ((x.Value.Status == Order.NotDelivered) || (x.Value.DateTimeDelivered <= DatePickerTo.Date.DateTime))
+                   && ((x.Value.Amount >= Int32.Parse(TextBoxMinPrice.Text)
+                    && (x.Value.Amount <= Int32.Parse((TextBoxMaxPrice.Text)))
+                   && (x.Value.DeliveryTime <= TimePickerDeliveryTimeOrder.Time)))
 
-                    ).Select(pair => pair.Value);
+                ).Select(pair => pair.Value);
             //}
             this.ViewModel.Orders.Clear();
             if (ViewModel.IsDeliverer)
@@ -365,12 +366,15 @@ namespace Restaurant
             var clickedElement = ((FrameworkElement)e.OriginalSource).DataContext;
             if (clickedElement is Order)
             {
-                Order order = (Order)clickedElement;
-                ViewModel.SelectedOrder = order;
+                if (Navigation.Shell.Model.IsDeliverer)
+                {
 
-                ListView listView = (ListView)sender;
-                MenuFlyoutOrder.ShowAt(listView, e.GetPosition(listView));
+                    Order order = (Order)clickedElement;
+                    ViewModel.SelectedOrder = order;
 
+                    ListView listView = (ListView)sender;
+                    MenuFlyoutOrder.ShowAt(listView, e.GetPosition(listView));
+                }
             }
 
         }
@@ -420,8 +424,8 @@ namespace Restaurant
 
         private void ButtonSearchMealShow_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.IsSearchMealShown= !ViewModel.IsSearchMealShown;
-            ButtonSearchMealShow.Content = ViewModel.IsSearchMealShown? "\uE70E" : "\uE70D";
+            ViewModel.IsSearchMealShown = !ViewModel.IsSearchMealShown;
+            ButtonSearchMealShow.Content = ViewModel.IsSearchMealShown ? "\uE70E" : "\uE70D";
 
         }
 

@@ -23,6 +23,8 @@ namespace Restaurant.Model.Tables
         private DateTime dateTimeOrdered;
         private DateTime dateTimeDelivered;
 
+        private TimeSpan deliveryTime;
+
         private static readonly SolidColorBrush[] GROUPS_COLOURS =
         {
             new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)),
@@ -167,6 +169,23 @@ namespace Restaurant.Model.Tables
             this.dateTimeDelivered = dateTimeDelivered;
             this.dateTimeOrdered = dateTimeOrdered;
             this.group = group;
+
+            TimeSpan minDeliveryTime = TimeSpan.MaxValue;
+            foreach (var it in orderMealOptions.Values)
+            {
+                if (it.Meal.Restaurant.DeliveryTime < minDeliveryTime)
+                {
+                    minDeliveryTime = it.Meal.Restaurant.DeliveryTime;
+                }
+            }
+
+            this.deliveryTime = minDeliveryTime;
+        }
+
+        public TimeSpan DeliveryTime
+        {
+            get => deliveryTime;
+            set => deliveryTime = value;
         }
     }
 }

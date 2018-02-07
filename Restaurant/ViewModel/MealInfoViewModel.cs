@@ -56,7 +56,7 @@ namespace Restaurant.ViewModel
         {
             get => curImageIdx;
             set { curImageIdx = value;  this.OnPropertyChanged();}
-        }
+        }   
 
         public ObservableCollection<CommentMeal> CommentMeals
         {

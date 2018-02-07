@@ -51,12 +51,17 @@ namespace Restaurant.View
                     string orderTitle = itOrder.Id + ",";
                     string colour = Order.GroupsColoursStr[itOrder.Group];
                     LinkedList<RestaurantSpec> restaurantSpecs = new LinkedList<RestaurantSpec>();
+                    LinkedList<User> users = new LinkedList<User>();
                     foreach (var it in itOrder.OrderMealOptions.Values)
                     {
                         if (!restaurantSpecs.Contains(it.Meal.Restaurant))
                         {
                             restaurantSpecs.AddLast(it.Meal.Restaurant);
                         }
+                    };
+                    if (!users.Contains(itOrder.User))
+                    {
+                        users.AddLast(itOrder.User);
                     }
 
                     foreach (var itRest in restaurantSpecs)
@@ -78,6 +83,19 @@ namespace Restaurant.View
                         landmarksMapElements.Add(pinIcon);
                         MapControlRestaurant.MapElements.Add(pinIcon);
                         globalPin = pinIcon;
+                    }
+
+                    foreach (var itUser in users )
+                    {
+                        var pinIcon = new MapIcon
+                        {
+                            Location = itUser.LocationGeopoint,
+                            NormalizedAnchorPoint = new Point(0.5, 1.0),
+                            ZIndex = 0,
+                            Title = itUser.FirstName + " " + itUser.LastName,
+                            CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
+                        };
+                        MapControlRestaurant.MapElements.Add(pinIcon);
                     }
                 }
             }
