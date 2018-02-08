@@ -79,7 +79,7 @@ namespace Restaurant.View
                         mapObjects.Add(pinIcon, itRest);
                         string path = "ms-appx:///Assets/Icons/Pin/";
                         var tempColour = path + colour + ".png";
-                        //pinIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri(tempColour));
+                        pinIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri(tempColour));
                         landmarksMapElements.Add(pinIcon);
                         MapControlRestaurant.MapElements.Add(pinIcon);
                         globalPin = pinIcon;
@@ -142,12 +142,12 @@ namespace Restaurant.View
                 Title = "Trenutna",
                 CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
             };
-            /*
+            
             string path = "ms-appx:///Assets/Icons/Pin/";
             var tempColour = path + "Black" + ".png";
             pinIcon.Image =
                 RandomAccessStreamReference.CreateFromUri(new Uri(tempColour));
-            */
+            
             MapControlRestaurant.MapElements.Add(pinIcon);
         }
     }

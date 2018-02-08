@@ -49,7 +49,6 @@ namespace Restaurant
 
         private void UpdateHasOrders()
         {
-            bool hasOrders = false;
             foreach (var it in DatabaseModel.MealsTable.Values)
             {
                 if (it.Amount > 0)
